@@ -19,8 +19,13 @@
 }
 
 .chart{
-    width: 20rem;
+    width: 40rem;
+    height: 40rem;
     border-radius: 1em;
     margin: 1rem auto;
-    background-color: p.$secondary-accent-light;
+    background-color: #090F20;
+    .chartjs-size-monitor {
+        width: inherit;
+        height: inherit;
+    }
 }

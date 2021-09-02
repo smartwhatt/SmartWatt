@@ -5,12 +5,7 @@ import styles from '../../styles/modules/navbar.module.scss'
 
 export default function Navbar({page}){
     // console.log(page);
-    var prevScrollpos = 20;
-    if(typeof window === undefined){
-        prevScrollpos = window.pageYOffset;
-    }
-
-    const [state, setState] = useState({prevScrollpos:prevScrollpos, visible:true})
+    const [state, setState] = useState({prevScrollpos:20, visible:true})
     useEffect( () => {
         window.addEventListener("scroll", handleScroll);
 
@@ -25,7 +20,6 @@ export default function Navbar({page}){
 
         const currentScrollPos = window.pageYOffset;
         const visible = prevScrollpos > currentScrollPos;
-
         setState({
             prevScrollpos: currentScrollPos,
             visible
