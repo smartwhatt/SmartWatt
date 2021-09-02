@@ -1,0 +1,15 @@
+@use "../palette.scss" as p;
+
+.footer-container{
+    display: inline-grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-areas: "none copyright social";
+    width: 100%;
+    padding: 1em;
+}
+
+.copyright{
+    color: p.$text-primary;
+    grid-area: copyright;
+    text-align: center;
+}
