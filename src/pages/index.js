@@ -13,7 +13,7 @@ export default function Home() {
         <Image src={"/img/profile.png"} width={240} height={240} objectFit='contain' />
         </div>
         <h1 className={styles["name"]}>Smart Wattanapornmongkol</h1>
-        <h2 className={styles["subtext"]}><ReactTypingEffect text={["Fullstack Developer", "Cloud Engineer", "DevOps Engineer"]} /></h2>
+        <h2 className={styles["subtext"]}><ReactTypingEffect text={["Fullstack Developer", "Cloud Engineer", "DevOps Engineer"]} speed={150} eraseSpeed={150} typingDelay={1000} /></h2>
       </div>
     </div>
   )
