@@ -1,0 +1,62 @@
+@use "./palette.scss" as p;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Ubuntu, sans-serif;
+  background-color: p.$background-secondary-light;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1{
+  color:p.$primary-accent-light;
+  font-size: 3rem;
+}
+
+h2{
+  color:p.$primary-accent-light;
+  font-size: 2rem;
+}
+
+main{
+  margin-top: 4em;
+  transition: 1s;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

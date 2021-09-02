@@ -1,0 +1,15 @@
+.parallax{
+    /* The image used */
+  background-image: url("/img/bg-image.png");
+
+  --x: 0px;
+  --y: 0px;
+  /* Set a specific height */
+  min-height: 42rem;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
