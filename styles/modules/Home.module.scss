@@ -1,15 +1,39 @@
+@use "../palette.scss" as p;
+
 .parallax{
     /* The image used */
   background-image: url("/img/bg-image.png");
-
-  --x: 0px;
-  --y: 0px;
   /* Set a specific height */
-  min-height: 42rem;
+  height: calc(100vh - 5rem);
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
+  grid-template-areas: "none" "title" "none2";
+}
+
+.title{
+  grid-area: title;
+  display: grid;
+  grid-template-rows: 50% 15% 25%;
+  text-align: center;
+  color: p.$primary-accent-light;
+}
+
+.image{
+  margin: auto 0;
+}
+
+.name{
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.subtext{
+  margin-top: 0;
+  margin-bottom: auto;
 }

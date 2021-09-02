@@ -2,13 +2,19 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/modules/Home.module.scss'
 import {useEffect, useRef} from "react";
+import ReactTypingEffect from 'react-typing-effect';
 
 export default function Home() {
 
   return (
     <div className={styles.parallax}>
-      <h1>Smart Wattanapornmongkol</h1>
-      <h2>Fullstack Cloud Developer</h2>
+      <div className={styles["title"]}>
+        <div className={styles["image"]}>
+        <Image src={"/img/profile.png"} width={240} height={240} objectFit='contain' />
+        </div>
+        <h1 className={styles["name"]}>Smart Wattanapornmongkol</h1>
+        <h2 className={styles["subtext"]}><ReactTypingEffect text={["Fullstack Developer", "Cloud Engineer", "DevOps Engineer"]} /></h2>
+      </div>
     </div>
   )
 }
