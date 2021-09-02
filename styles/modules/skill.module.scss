@@ -1,0 +1,21 @@
+@use "../palette.scss" as p;
+
+.skill-container{
+    border-radius: 100%;
+    background-color: p.$background-primary-light;
+    width: fit-content;
+    padding: 1rem;
+    position:relative;
+    margin: .8rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.skill-card{
+    position: absolute;
+    color: p.$text-secondary;
+    right:-20px;
+    top:10px;
+    background-color: p.$secondary-light;
+    padding: .2rem;
+    border-radius: .2rem;
+}

@@ -3,6 +3,7 @@ import styles from '../../styles/modules/about.module.scss'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 const Title = dynamic(() => import('../components/title'))
+const Skill = dynamic(() => import('../components/skill'))
 
 export default function About() {
     const router = useRouter()
@@ -11,6 +12,9 @@ export default function About() {
 
   return (
       <>
+      <Head>
+        <title>SmartWatt | About</title>
+      </Head>
       <Title title="About Smart" path={router.asPath} />
       <div>
           <h3 className={styles["h3"]}>About Me</h3>
@@ -19,8 +23,8 @@ export default function About() {
       <div>
         <h3 className={styles["h3"]}>Expertise</h3>
         <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
-        <div className={styles["chart"]}>
-        {/* <Radar data={data} options={options} width={960} height={960} plugins={[plugins]} /> */}
+        <div className={styles["skills"]}>
+        <Skill name="Python" src="/img/skill/python.png" />
         </div>
       </div>
       </>

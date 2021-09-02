@@ -18,14 +18,14 @@
     font-size: 1.5rem;
 }
 
-.chart{
-    width: 40rem;
-    height: 40rem;
+.skills{
+    min-width: 20rem;
+    max-width: 60vw;
     border-radius: 1em;
     margin: 1rem auto;
-    background-color: #090F20;
-    .chartjs-size-monitor {
-        width: inherit;
-        height: inherit;
-    }
+    background-color: #96a5c7;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: rgba(255, 255, 255, 0.24) 0px .25rem 1rem;
 }
