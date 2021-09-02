@@ -1,10 +1,22 @@
 import styles from '../../styles/modules/footer.module.scss'
 
+// Import Icon
+import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
+import { RiDiscordFill } from 'react-icons/ri';
+
 
 export default function Footer() {
   return (
+    <>
     <footer className={styles["footer-container"]} >
-        <span className={styles["copyright"]}>&copy;Smart Wattanapornmongkol</span>
+      <hr className={styles["divider"]} />
+        <span className={styles["copyright"]}>&copy; Smart Wattanapornmongkol {new Date().getFullYear()}</span>
+        <div className={styles["social"]}>
+            <a href="https://www.linkedin.com/in/smart-wattanapornmongkol-b3b758207/"><AiFillLinkedin className={styles["icon"]} size={24} /></a>
+            <a href="https://discord.com/users/508507551999197225"><RiDiscordFill className={styles["icon"]} size={24} /></a>
+            <a href="https://github.com/Jimmy-Tempest"><AiFillGithub className={styles["icon"]} size={24} /></a>
+        </div>
     </footer>
+    </>
   )
 }

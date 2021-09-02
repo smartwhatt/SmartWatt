@@ -1,0 +1,31 @@
+@use "../palette.scss" as p;
+
+.title-container{
+    /* The image used */
+  background-image: url("/img/title-image.png");
+  /* Set a specific height */
+  max-height: calc(75vh - 5rem);
+  min-height: calc(75vh - 5rem);
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  grid-template-rows: 10% 70% 20%;
+  grid-template-areas: "none" "title" "none2";
+}
+
+.title{
+    grid-area: title;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    text-align: center;
+    color: p.$primary-accent-light;
+  }
+
+.title-header{
+    margin-top: auto;
+    margin-bottom: 0;
+}

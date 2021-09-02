@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import Link from 'next/link'
 //Style Import
 import styles from '../../styles/modules/navbar.module.scss'
 
@@ -39,10 +39,10 @@ export default function Navbar({page}){
               SmartWatt
           </div>
           <div className={styles["nav-items-container"]}>
-            <a href="/" className={`${styles["nav-item"]} ${page === "/" ? styles["active"] : null}`} >Home</a>
-            <a href="/" className={`${styles["nav-item"]} ${page.includes("about") ? styles["active"] : null}`} >About</a>
-            <a href="/" className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`} >Portfolio</a>
-            <a href="/" className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`}>Contact</a>
+            <Link href="/"><a className={`${styles["nav-item"]} ${page === "/" ? styles["active"] : null}`}>Home</a></Link>
+            <Link href="/about"><a className={`${styles["nav-item"]} ${page.includes("about") ? styles["active"] : null}`}>About</a></Link>
+            <Link href="/"><a className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`}>Portfolio</a></Link>
+            <Link href="/"><a className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`} >Contact</a></Link>
           </div>
         </nav>
     );

@@ -3,13 +3,35 @@
 .footer-container{
     display: inline-grid;
     grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 1px 1rem;
     grid-template-areas: "none copyright social";
     width: 100%;
     padding: 1em;
+    margin: 1rem;
+}
+
+.divider{
+    grid-column: 1/-1;
+    margin: .25rem;
+    height: 0;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .copyright{
-    color: p.$text-primary;
+    color: p.$primary-accent-light;
     grid-area: copyright;
     text-align: center;
+    padding: .5rem;
+}
+
+.social{
+    color: p.$secondary-accent-light;
+    grid-area: social;
+    text-align: right;
+    padding: .5rem;
+}
+
+.icon:hover{
+    color: p.$secondary-light;
 }

@@ -1,11 +1,25 @@
 @use "./palette.scss" as p;
 
+@media (pointer: none), (pointer: coarse) {
+  html {
+      font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+      font-size: 12px;
+  }
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: Ubuntu, sans-serif;
   background-color: p.$background-secondary-light;
+  color: p.$text-primary;
 }
 
 a {
@@ -30,33 +44,32 @@ h2{
 main{
   margin-top: 4em;
   transition: 1s;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1;
 }
 
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* width */
+::-webkit-scrollbar {
+  width: .5rem;
 }
 
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* Track */
+::-webkit-scrollbar-track {
+  background: p.$background-secondary-light;
 }
 
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  // border: solid white 1px;
+  border-radius: 1rem;
 }
 
-/* Internet Explorer */
-@-ms-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  opacity: 80%;
 }
