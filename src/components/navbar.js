@@ -12,7 +12,7 @@ export default function Navbar({page}){
         return () => {
             window.removeEventListener("scroll", handleScroll);
         }
-     }, []);
+     }, [handleScroll]);
   
 
     function handleScroll(){

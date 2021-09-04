@@ -32,7 +32,7 @@ export default function About() {
         <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
         <div className={styles["skills"]}>
           {!loading ? skills.docs.map((skill, index) => {
-            return <Skill name={skill.data().name} src={skill.data().src} />
+            return <Skill key={index} name={skill.data().name} src={skill.data().src} />
           }) : <span>Loading...</span>}
         </div>
       </div>
