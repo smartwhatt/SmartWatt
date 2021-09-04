@@ -29,13 +29,13 @@ export default function Navbar({page}){
 
     return (
         <nav className={`${styles.navbar} ${state.visible ? null: styles["navbar--hidden"]}`}>
-          <div className={styles.header}>
+          <Link href="/"><a><div className={styles.header}>
               SmartWatt
-          </div>
+          </div></a></Link>
           <div className={styles["nav-items-container"]}>
             <Link href="/"><a className={`${styles["nav-item"]} ${page === "/" ? styles["active"] : null}`}>Home</a></Link>
             <Link href="/about"><a className={`${styles["nav-item"]} ${page.includes("about") ? styles["active"] : null}`}>About</a></Link>
-            <Link href="/"><a className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`}>Portfolio</a></Link>
+            <Link href="/portfolio"><a className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`}>Portfolio</a></Link>
             <Link href="/"><a className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`} >Contact</a></Link>
           </div>
         </nav>

@@ -18,7 +18,7 @@ export default function Skill(props) {
     <div className={styles["skill-container"]}>
         <span className={styles["skill-card"]}>{state.skill.name}</span>
         {/* {console.log(state.skill)} */}
-        {!loading ? <Image src={state.skill.src} alt={state.skill.name} width={100} height={100} /> : null}
+        {!loading ? <Image src={state.skill.src} alt={state.skill.name} width={75} height={75} /> : null}
     </div>
   )
 }

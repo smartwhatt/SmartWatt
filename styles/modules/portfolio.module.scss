@@ -1,0 +1,22 @@
+@use "../palette.scss" as p;
+
+.option-container{
+    margin: 1rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.option-item{
+    text-align: center;
+    margin: .5rem;
+    transition: ease-in-out .5s;
+}
+
+.option-item:hover{
+    color: p.$primary-light;
+}
+
+.active{
+    color: p.$primary-light;
+}
