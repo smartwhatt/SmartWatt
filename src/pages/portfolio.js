@@ -4,20 +4,38 @@ import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import firebase from "../firebase/clientApp"
 import {useCollection} from "react-firebase-hooks/firestore"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Portcard from '../components/portcard'
 
 
 
 const Title = dynamic(() => import('../components/title'))
 
-export default function Portfolio() {
+
+export async function getServerSideProps(context) {
+    const collection = await firebase.firestore().collection("type").orderBy("name", "asc")
+    const items = (await collection.get()).docs;
+    const data = items.map((item) => item.data())
+    return {
+      props: {data}, // will be passed to the page component as props
+    }
+  }
+
+export default function Portfolio({data}) {
   const [menu, setMenu] = useState("All")
+  const [ports, setPorts] = useState(null)
   const router = useRouter()
-  const [types, typesLoading, typesError ] = useCollection(
-    firebase.firestore().collection("type").orderBy("name", "asc"),
+  const [work, loading, error ] = useCollection(
+    firebase.firestore().collection("portfolio").orderBy("title", "asc"),
     {}
   )
 
+  useEffect(() => {
+    if (!loading && work){
+        setPorts(work.docs.map((item) => item.data()));
+    }
+  }, [work, loading, error])
+  
   return (
       <>
       <Head>
@@ -26,9 +44,14 @@ export default function Portfolio() {
       <Title title="Best's Work" path={router.asPath} />
       <div className={styles["option-container"]}>
           <span onClick={() => setMenu("All")} className={`${styles["option-item"]} ${menu === "All" ? styles["active"] : null}`}>All</span>
-          {!typesLoading && !typesError ? types.docs.map((type, index) => {
-              return <span kry={index} onClick={() => setMenu(type.data().name)} className={`${styles["option-item"]} ${menu === type.data().name ? styles["active"] : null}`}>{type.data().name}</span>
-          }) : null}
+          {data.map((type, index) => {
+              return <span key={index} onClick={() => setMenu(type.name)} className={`${styles["option-item"]} ${menu === type.name ? styles["active"] : null}`}>{type.name}</span>
+          })}
+      </div>
+      <div className={styles["work-container"]}>
+          {ports !== null ? ports.map((port) => {
+              return <Portcard key={port.id} item={port} />
+          }) : <span>Loading...</span>}
       </div>
       </>
   )
