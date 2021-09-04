@@ -2,13 +2,20 @@ import Head from 'next/head'
 import styles from '../../styles/modules/about.module.scss'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
+import firebase from "../firebase/clientApp"
+import {useCollection} from "react-firebase-hooks/firestore"
+
+
+
 const Title = dynamic(() => import('../components/title'))
 const Skill = dynamic(() => import('../components/skill'))
 
 export default function About() {
-    const router = useRouter()
-  
-
+  const router = useRouter()
+  const [skills, loading, error ] = useCollection(
+    firebase.firestore().collection("skills").orderBy("name", "asc"),
+    {}
+  )
 
   return (
       <>
@@ -24,7 +31,9 @@ export default function About() {
         <h3 className={styles["h3"]}>Expertise</h3>
         <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
         <div className={styles["skills"]}>
-        <Skill name="Python" src="/img/skill/python.png" />
+          {!loading ? skills.docs.map((skill, index) => {
+            return <Skill name={skill.data().name} src={skill.data().src} />
+          }) : <span>Loading...</span>}
         </div>
       </div>
       </>

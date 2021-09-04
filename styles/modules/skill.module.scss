@@ -12,6 +12,7 @@
 
 .skill-card{
     position: absolute;
+    z-index: 5;
     color: p.$text-secondary;
     right:-20px;
     top:10px;
