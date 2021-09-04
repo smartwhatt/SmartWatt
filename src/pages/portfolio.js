@@ -13,7 +13,7 @@ const Title = dynamic(() => import('../components/title'))
 
 
 export async function getServerSideProps(context) {
-    const collection = await firebase.firestore().collection("type").orderBy("name", "asc")
+    const collection = await firebase.firestore().collection("type").orderBy("name", "asc");
     const items = (await collection.get()).docs;
     const data = items.map((item) => item.data())
     return {
@@ -35,6 +35,32 @@ export default function Portfolio({data}) {
         setPorts(work.docs.map((item) => item.data()));
     }
   }, [work, loading, error])
+
+  useEffect(() => {
+    setPorts(null);
+    let isSubscribed = true;
+
+    if (menu !== "All")
+    firebase.firestore().collection("portfolio").where("type", "==", menu).orderBy("title", "asc").get()
+    .then(items => {
+        if (isSubscribed){
+            const data = items.docs.map((item) => item.data());
+            setPorts(data);
+        }
+    })
+    else{
+        firebase.firestore().collection("portfolio").orderBy("title", "asc").get()
+        .then(items => {
+            if (isSubscribed){
+                const data = items.docs.map((item) => item.data());
+                setPorts(data);
+            }
+        })
+    
+    }
+    return () => (isSubscribed = false)
+
+  }, [menu])
   
   return (
       <>
@@ -49,8 +75,8 @@ export default function Portfolio({data}) {
           })}
       </div>
       <div className={styles["work-container"]}>
-          {ports !== null ? ports.map((port) => {
-              return <Portcard key={port.id} item={port} />
+          {ports !== null ? ports.map((port, index) => {
+              return <Portcard key={index} item={port} />
           }) : <span>Loading...</span>}
       </div>
       </>
