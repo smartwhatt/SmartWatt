@@ -36,7 +36,7 @@ export default function Navbar({page}){
             <Link href="/"><a className={`${styles["nav-item"]} ${page === "/" ? styles["active"] : null}`}>Home</a></Link>
             <Link href="/about"><a className={`${styles["nav-item"]} ${page.includes("about") ? styles["active"] : null}`}>About</a></Link>
             <Link href="/portfolio"><a className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`}>Portfolio</a></Link>
-            <Link href="/"><a className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`} >Contact</a></Link>
+            <Link href="/contact"><a className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`} >Contact</a></Link>
           </div>
         </nav>
     );
