@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../../styles/modules/portfolio.module.scss'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
-import firebase from "../firebase/clientApp"
+import firebase from "../libs/clientApp"
 import {useCollection} from "react-firebase-hooks/firestore"
 import { useEffect, useState } from 'react'
 import Portcard from '../components/portcard'

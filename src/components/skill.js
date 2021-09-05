@@ -1,7 +1,7 @@
 import styles from '../../styles/modules/skill.module.scss'
 import Image from 'next/image'
 import {useState} from 'react';
-import firebase from "../firebase/clientApp"
+import firebase from "../libs/clientApp"
 import { useDownloadURL } from 'react-firebase-hooks/storage';
 
 export default function Skill(props) {
