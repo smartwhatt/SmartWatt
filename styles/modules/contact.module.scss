@@ -1,0 +1,34 @@
+@use "../palette.scss" as p;
+
+.h3{
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.contact-paragraph{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.form-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "name message" "email message" "subject message";
+    textarea, input{
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: .5rem;
+        background-color: p.$background-primary-dark;
+    }
+    textarea:focus, input:focus{
+        outline: none;
+    }
+      
+    width: 60vw;
+    margin: 0 auto;
+}
+
+.message {
+    grid-area: message;
+}
