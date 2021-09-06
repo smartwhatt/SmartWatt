@@ -11,6 +11,7 @@
   "dependencies": {
     "chart.js": "2.9.4",
     "firebase": "^8.6.2",
+    "framer-motion": "^4.1.17",
     "next": "11.1.2",
     "nodemailer": "^6.6.3",
     "react": "17.0.2",

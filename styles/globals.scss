@@ -1,15 +1,17 @@
 @use "./palette.scss" as p;
 
 @media (pointer: none), (pointer: coarse) {
-  html {
-      font-size: 12px;
-  }
+  html,
+  body {
+        font-size: 12px;
+    }
 }
 
 @media only screen and (max-width: 600px) {
-  html {
-      font-size: 12px;
-  }
+  html,
+  body {
+        font-size: 12px;
+    }
 }
 
 
@@ -48,6 +50,8 @@ main{
 }
 
 .fadeOut{
+  margin-top: 4em;
+  transition: 1s;
   opacity: 0;
 }
 

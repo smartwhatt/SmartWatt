@@ -1,10 +1,11 @@
 import '../../styles/globals.scss'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import { AnimatePresence } from 'framer-motion'
 const Layout = dynamic(() => import('../components/layout'))
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router}) {
   return(
     <>
       <Head>
@@ -27,9 +28,11 @@ function MyApp({ Component, pageProps }) {
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#0F0A0F" />
       </Head>
+      <AnimatePresence exitBeforeEnter>
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      </AnimatePresence>
     </>
   )
 }
