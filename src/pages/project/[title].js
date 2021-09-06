@@ -50,7 +50,7 @@ export default function Project({params, data}) {
       <div className={styles["info-container"]}>
           <div className={styles["header-container"]}>
             <span>{project.title}</span>
-            <span><a href={project.github} target="_blank">{project.github}</a></span>
+            <span><a href={project.github} target="_blank" rel="noreferrer" >{project.github}</a></span>
           </div>
           <ReactMarkdown children={content} remarkPlugins={[remarkGfm]} />
       </div>
