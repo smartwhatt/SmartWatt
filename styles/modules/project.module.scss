@@ -1,0 +1,21 @@
+@use "../palette.scss" as p;
+
+.info-container{
+    background-color: p.$background-secondary-light;
+    border-radius: .5rem;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 .125rem .5rem;
+    margin: 1rem auto;
+    width: 60vw;
+    padding: 2rem;
+}
+
+.header-container{
+    text-align: right;
+    color: p.$secondary-accent-light;
+    span{
+        margin: .5rem;
+    }
+    a:hover{
+        color: p.$secondary-light;
+    }
+}

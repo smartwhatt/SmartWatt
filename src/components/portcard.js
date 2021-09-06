@@ -17,17 +17,35 @@ export default function Portcard(props) {
     setState({...state, work:{...state.work, preview:downloadUrl}, rendering:false});
   }
 
-
+  if (props.item.link !== undefined)
   return (
-    <Link href={props.item.link !== undefined ? props.item.link: ""} >
-        <a target={props.item.link !== undefined ? "_blank": "_self"}>
+    <Link href={props.item.link} >
+        <a target={"_blank"}>
             <div className={styles["card-container"]} style={!loading ? {backgroundImage: `url(${state.work.preview})`}: null}>
                 <span className={styles["card-title"]}>{state.work.title}</span>
                 <span className={styles["card-badge"]}>{state.work.type}</span>
-                {/* {console.log(state.work)} */}
-                {/* {!loading ? <Image src={state.skill.src} alt={state.skill.name} width={75} height={75} /> : null} */}
             </div>
         </a>
     </Link>
+  )
+  else if (props.item.type === "Project")
+  return (
+    <Link href={`project/${props.item.title}`} >
+        <a>
+            <div className={styles["card-container"]} style={!loading ? {backgroundImage: `url(${state.work.preview})`}: null}>
+                <span className={styles["card-title"]}>{state.work.title}</span>
+                <span className={styles["card-badge"]}>{state.work.type}</span>
+            </div>
+        </a>
+    </Link>
+  )
+  else
+  return (
+    <div className={styles["card-container"]} style={!loading ? {backgroundImage: `url(${state.work.preview})`}: null}>
+        <span className={styles["card-title"]}>{state.work.title}</span>
+        <span className={styles["card-badge"]}>{state.work.type}</span>
+        {/* {console.log(state.work)} */}
+        {/* {!loading ? <Image src={state.skill.src} alt={state.skill.name} width={75} height={75} /> : null} */}
+    </div>
   )
 }
