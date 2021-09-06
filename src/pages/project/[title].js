@@ -52,7 +52,7 @@ export default function Project({params, data}) {
             <span>{project.title}</span>
             <span><a href={project.github} target="_blank" rel="noreferrer" >{project.github}</a></span>
           </div>
-          <ReactMarkdown children={content} remarkPlugins={[remarkGfm]} />
+          <ReactMarkdown remarkPlugins={[remarkGfm]}> {content} </ReactMarkdown>
       </div>
       </>
   )
