@@ -1,13 +1,6 @@
 @use "./palette.scss" as p;
 
-@media (pointer: none), (pointer: coarse) {
-  html,
-  body {
-        font-size: 12px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (pointer: none), (pointer: coarse) and (max-width: 600px) {
   html,
   body {
         font-size: 12px;

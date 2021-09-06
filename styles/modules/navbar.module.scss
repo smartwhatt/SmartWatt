@@ -28,6 +28,10 @@
 
 .nav-item{
   padding: .5rem;
+  transition: ease-in-out .2s;
+}
+.nav-item:hover{
+  color: p.$secondary-light;
 }
 
 .active{

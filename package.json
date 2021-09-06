@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@octokit/core": "^3.5.1",
     "chart.js": "2.9.4",
     "firebase": "^8.6.2",
     "framer-motion": "^4.1.17",
@@ -21,7 +22,9 @@
     "react-firebase-hooks": "^3.0.4",
     "react-firebaseui": "^5.0.2",
     "react-icons": "^4.2.0",
+    "react-markdown": "^7.0.1",
     "react-typing-effect": "^2.0.5",
+    "remark-gfm": "^2.0.0",
     "sass": "^1.39.0"
   },
   "devDependencies": {

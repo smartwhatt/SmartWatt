@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps, router}) {
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#0F0A0F" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="keywords" content="Smart Wattanapornmongkol, Wattanapornmongkol, Smart, Jimmy, Best, สมัชญ์ วัฒนพรมงคล, สมัชญ์, วัฒนพรมงคล, ศรีศักดิ์ วัฒนพรมงคล" />
+        <meta name="keywords" content="Smart Wattanapornmongkol, Wattanapornmongkol, Smart, Jimmy, Best, สมัชญ์ วัฒนพรมงคล, สมัชญ์, วัฒนพรมงคล, ศรีศักดิ์ วัฒนพรมงคล, portfolio" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       </Head>
       <AnimatePresence exitBeforeEnter>
