@@ -19,9 +19,10 @@ export default function (req, res) {
         subject: req.body.subject,
         text: req.body.body,
         html: `
-        <div>${req.body.body}</div>
-        <p>Sent from:${req.body.email}</p>
-        <footer>Sented from <a href="https://smartwatt.me/">smartwatt.me</a></footer>
+        <div style="font-size:24px">${req.body.body}</div>
+        <p style="font-size:18px">Sent from: ${req.body.email}</p>
+        <hr />
+        <footer style="text-align:center">Sent from <a href="https://smartwatt.me/">smartwatt.me</a></footer>
         `
     }
     transporter.sendMail(mailData, function (err, info) {
