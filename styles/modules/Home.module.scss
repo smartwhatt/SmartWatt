@@ -19,21 +19,25 @@
 .title{
   grid-area: title;
   display: grid;
-  grid-template-rows: 50% 15% 25%;
+  grid-template-rows: 1fr .25fr .5fr;
   text-align: center;
+  grid-template-areas: "image" "name" "subtext";
   color: p.$primary-accent-light;
 }
 
 .image{
-  margin: auto 0;
+  margin: 0 auto;
+  grid-area: image;
 }
 
 .name{
   margin-top: 0;
   margin-bottom: auto;
+  grid-area: name;
 }
 
 .subtext{
+  grid-area: subtext;
   margin-top: 0;
   margin-bottom: auto;
 }
