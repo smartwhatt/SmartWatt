@@ -13,8 +13,8 @@
 .form-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas: "name message" "email message" "subject message";
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "name message" "email message" "subject message" "none submit";
     textarea, input{
         margin: 1rem;
         padding: 1rem;
@@ -31,4 +31,24 @@
 
 .message {
     grid-area: message;
+}
+
+.submit {
+    grid-area: submit;
+    text-align: right;
+    padding: .5rem 1rem;
+
+    button{
+        padding: .5rem 2rem;
+        border: none;
+        border-radius: .25rem;
+        outline: none;
+        background-color: p.$secondary-light;
+        color: p.$text-primary;
+        cursor: pointer;
+        transition: ease-in-out .2s;
+    }
+    button:hover{
+        opacity: .8;
+    }
 }
