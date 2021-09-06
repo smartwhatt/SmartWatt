@@ -14,6 +14,7 @@ export default function Contact() {
   const [email, setEmail] = useState("")
   const [subject, setSubject] = useState("")
   const [body, setBody] = useState("")
+  const [sent, setSent] = useState(false)
 
   function handleSubmit(e){
     e.preventDefault()
@@ -38,6 +39,7 @@ export default function Contact() {
         setEmail('')
         setBody('')
         setSubject('')
+        setSent(true)
       }
     })
   }
@@ -50,6 +52,7 @@ export default function Contact() {
       </Head>
       <Title title="Watt are you waiting for?" path={router.asPath} />
       <div>
+        {sent ? <div className={styles["alert"]}>Thank you for reaching out to me! I will email you back as soon as possible.</div> : null}
         <h3 className={styles["h3"]}>Contact Me</h3>
         <p className={styles["contact-paragraph"]}>Please fill in the form below with your message. Thank you!</p>
         <div>

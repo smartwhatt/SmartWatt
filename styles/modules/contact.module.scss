@@ -52,3 +52,11 @@
         opacity: .8;
     }
 }
+
+.alert{
+    background-color: p.$secondary-accent-light;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+    color: p.$text-secondary;
+}
