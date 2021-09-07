@@ -3,7 +3,7 @@
 
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 
-Portfolio and personal website of Smart Wattanapornmongkol (Jimmy/Best). This site is collection is Jimmy's skills, project, certificates and Competitions.
+Portfolio and personal website of Smart Wattanapornmongkol (Jimmy/Best). This site is collection of Jimmy's skills, project, certificates and Competitions.
 
 # Installation
 Clone this repository by running 
