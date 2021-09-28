@@ -15,6 +15,7 @@ body {
   font-family: Ubuntu, sans-serif;
   background-color: p.$background-secondary-light;
   color: p.$text-primary;
+  overflow-x: hidden;
 }
 
 a {
