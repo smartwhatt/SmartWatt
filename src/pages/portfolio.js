@@ -26,7 +26,7 @@ export default function Portfolio({data}) {
   const [ports, setPorts] = useState(null)
   const router = useRouter()
   const [work, loading, error ] = useCollection(
-    firebase.firestore().collection("portfolio").orderBy("title", "asc"),
+    firebase.firestore().collection("portfolio").orderBy("type", "asc").orderBy("title", "asc"),
     {}
   )
 
@@ -49,7 +49,7 @@ export default function Portfolio({data}) {
         }
     })
     else{
-        firebase.firestore().collection("portfolio").orderBy("title", "asc").get()
+        firebase.firestore().collection("portfolio").orderBy("type", "asc").orderBy("title", "asc").get()
         .then(items => {
             if (isSubscribed){
                 const data = items.docs.map((item) => item.data());

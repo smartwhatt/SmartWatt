@@ -20,7 +20,7 @@ export default function Portcard(props) {
   if (props.item.link !== undefined)
   return (
     <Link href={props.item.link} >
-        <a target={"_blank"}>
+        <a target={"_blank"} title={state.work.title}>
             <div className={styles["card-container"]} style={!loading ? {backgroundImage: `url(${state.work.preview})`}: null}>
                 <span className={styles["card-title"]}>{state.work.title}</span>
                 <span className={styles["card-badge"]}>{state.work.type}</span>
@@ -31,7 +31,7 @@ export default function Portcard(props) {
   else if (props.item.type === "Project")
   return (
     <Link href={`project/${props.item.title}`} >
-        <a>
+        <a title={state.work.title}>
             <div className={styles["card-container"]} style={!loading ? {backgroundImage: `url(${state.work.preview})`}: null}>
                 <span className={styles["card-title"]}>{state.work.title}</span>
                 <span className={styles["card-badge"]}>{state.work.type}</span>
