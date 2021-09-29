@@ -1,5 +1,14 @@
 @use "../palette.scss" as p;
 
+@media only screen and (pointer: none), (pointer: coarse) and (max-width: 700px) {
+  .nav-item{
+    span {
+        display: none;
+    }
+  }
+}
+
+
 .navbar {
     width: 100%;
     padding: 0.5rem;
@@ -10,7 +19,8 @@
     color: p.$link-primary;
     font-size: 1.5rem;
     display: inline-grid;
-    grid-template-columns: 20% auto
+    grid-template-columns: 20% auto;
+    z-index: 10;
 }
 
 .header {
@@ -29,6 +39,11 @@
 .nav-item{
   padding: .5rem;
   transition: ease-in-out .2s;
+}
+
+.icon{
+  // margin-top: .25rem;
+  vertical-align: top;
 }
 .nav-item:hover{
   color: p.$secondary-light;

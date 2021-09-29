@@ -4,7 +4,7 @@
     border-radius: 100%;
     background-color: p.$background-primary-light;
     width: fit-content;
-    padding: 1rem;
+    padding: 1.5rem;
     position:relative;
     margin: .8rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -14,9 +14,15 @@
     position: absolute;
     z-index: 5;
     color: p.$text-secondary;
-    right:-1.75rem;
+    right:calc(4rem - 4.5rem);
     top:.5rem;
     background-color: p.$secondary-light;
     padding: .2rem;
     border-radius: .2rem;
+    max-width: 4rem;
+    min-width: 2rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
