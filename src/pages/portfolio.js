@@ -5,10 +5,10 @@ import {useRouter} from 'next/router'
 import firebase from "../libs/clientApp"
 import {useCollection} from "react-firebase-hooks/firestore"
 import { useEffect, useState } from 'react'
-import Portcard from '../components/portcard'
+// import Portcard from '../components/portcard'
 
 
-
+const Portcard = dynamic(() => import('../components/portcard'))
 const Title = dynamic(() => import('../components/title'))
 
 
