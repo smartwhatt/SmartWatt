@@ -3,6 +3,10 @@ import Link from 'next/link'
 //Style Import
 import styles from '../../styles/modules/navbar.module.scss'
 
+// Icon import
+import { AiFillHome, AiFillInfoCircle, AiFillFolderOpen } from "react-icons/ai";
+import { RiContactsBook2Fill } from "react-icons/ri";
+
 export default function Navbar({page}){
     // console.log(page);
     const [state, setState] = useState({prevScrollpos:20, visible:true})
@@ -33,10 +37,10 @@ export default function Navbar({page}){
               SmartWatt
           </div></a></Link>
           <div className={styles["nav-items-container"]}>
-            <Link href="/"><a className={`${styles["nav-item"]} ${page === "/" ? styles["active"] : null}`}>Home</a></Link>
-            <Link href="/about"><a className={`${styles["nav-item"]} ${page.includes("about") ? styles["active"] : null}`}>About</a></Link>
-            <Link href="/portfolio"><a className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`}>Portfolio</a></Link>
-            <Link href="/contact"><a className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`} >Contact</a></Link>
+            <Link href="/"><a className={`${styles["nav-item"]} ${page === "/" ? styles["active"] : null}`}><AiFillHome className={styles["icon"]} /> <span>Home</span></a></Link>
+            <Link href="/about"><a className={`${styles["nav-item"]} ${page.includes("about") ? styles["active"] : null}`}><AiFillInfoCircle className={styles["icon"]} /> <span>About</span></a></Link>
+            <Link href="/portfolio"><a className={`${styles["nav-item"]} ${page.includes("portfolio") ? styles["active"] : null}`}><AiFillFolderOpen className={styles["icon"]} /> <span>Portfolio</span></a></Link>
+            <Link href="/contact"><a className={`${styles["nav-item"]} ${page.includes("contact") ? styles["active"] : null}`} ><RiContactsBook2Fill className={styles["icon"]} /> <span>Contact</span></a></Link>
           </div>
         </nav>
     );
