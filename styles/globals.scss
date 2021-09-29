@@ -66,12 +66,12 @@ main{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: p.$background-primary-light;
   // border: solid white 1px;
   border-radius: 1rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  opacity: 80%;
+  opacity: 75%;
 }

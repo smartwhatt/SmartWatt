@@ -19,7 +19,8 @@
     color: p.$link-primary;
     font-size: 1.5rem;
     display: inline-grid;
-    grid-template-columns: 20% auto
+    grid-template-columns: 20% auto;
+    z-index: 10;
 }
 
 .header {
