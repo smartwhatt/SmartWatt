@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 // import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage'
+import 'firebase/analytics';
 // import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
@@ -21,7 +22,7 @@ const firebaseConfig = {
   // Initialize Firebase
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    const analytics = () => firebase.analytics();
   }
   
   export default firebase;
