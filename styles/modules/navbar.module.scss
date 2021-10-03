@@ -39,16 +39,21 @@
 .nav-item{
   padding: .5rem;
   transition: ease-in-out .2s;
+  span {
+    vertical-align: middle;
+  }
 }
 
 .icon{
   // margin-top: .25rem;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .nav-item:hover{
   color: p.$secondary-light;
+  font-size: calc(1.5rem * 1.1);
 }
 
 .active{
   color: p.$link-primary-hover;
+  font-size: calc(1.5rem * 1.1);
 }
