@@ -6,20 +6,26 @@
     text-align: center;
     font-size: 1.5rem;
     cursor: pointer;
+    max-height: 2.5rem;
+    height: 2rem;
 }
 
 .option-item{
     text-align: center;
     margin: .5rem;
-    transition: ease-in-out .5s;
+    transition: ease-in-out .2s;
 }
 
 .option-item:hover{
     color: p.$primary-light;
+    font-size: calc(1.5rem * 1.05);
+    font-weight: bold;
 }
 
 .active{
     color: p.$primary-light;
+    font-size: calc(1.5rem * 1.05);
+    font-weight: bold;
 }
 
 .work-container{
