@@ -4,6 +4,9 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage'
 import 'firebase/analytics';
+import 'firebase/app-check';
+import 'firebase/performance'
+
 // import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
@@ -22,7 +25,17 @@ const firebaseConfig = {
   // Initialize Firebase
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    const analytics = () => firebase.analytics();
+    if (typeof window !== 'undefined') {
+      // Enable analytics. https://firebase.google.com/docs/analytics/get-started
+      if ('measurementId' in firebaseConfig) {
+        firebase.analytics();
+        firebase.appCheck().activate(
+          process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+          true);
+        firebase.performance();
+      }
+    }
+    
   }
   
   export default firebase;
