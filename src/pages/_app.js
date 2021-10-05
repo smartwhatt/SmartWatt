@@ -2,6 +2,7 @@ import '../../styles/globals.scss'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { AnimatePresence } from 'framer-motion'
+// import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 const Layout = dynamic(() => import('../components/layout'))
 
 
