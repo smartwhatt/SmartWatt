@@ -5,6 +5,7 @@ import {useRouter} from 'next/router'
 import firebase from "../libs/clientApp"
 import {useCollection} from "react-firebase-hooks/firestore"
 
+import Fade from 'react-reveal/Fade';
 
 
 const Title = dynamic(() => import('../components/title'))
@@ -23,19 +24,24 @@ export default function About() {
         <title>SmartWatt | About</title>
       </Head>
       <Title title="About Smart" path={router.asPath} />
-      <div>
-          <h3 className={styles["h3"]}>About Me</h3>
-          <p className={styles["paragraph"]}>I am just a high school student at Suankularb Wittayalai School, Thailand, who is interested in software development and computer science. Currently, I am working mostly with Python in field of Data Science and some web development with Django and Javascript framework like Nextjs and Reactjs.</p>
-      </div>
-      <div>
-        <h3 className={styles["h3"]}>Expertise</h3>
-        <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
-        <div className={styles["skills"]}>
-          {!loading ? skills.docs.map((skill, index) => {
-            return <Skill key={index} name={skill.data().name} src={skill.data().src} />
-          }) : <span>Loading...</span>}
+      <Fade bottom cascade>
+        <div>
+            <h3 className={styles["h3"]}>About Me</h3>
+            <p className={styles["paragraph"]}>I am just a high school student at Suankularb Wittayalai School, Thailand, who is interested in software development and computer science. Currently, I am working mostly with Python in field of Data Science and some web development with Django and Javascript framework like Nextjs and Reactjs.</p>
         </div>
+      </Fade>
+      <div>
+        <Fade bottom>
+          <h3 className={styles["h3"]}>Expertise</h3>
+          <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
+        </Fade>
+          <div className={styles["skills"]}>
+            {!loading ? skills.docs.map((skill, index) => {
+              return <Fade key={index}><Skill name={skill.data().name} src={skill.data().src} /></Fade>
+            }) : <span>Loading...</span>}
+          </div>
       </div>
+      
       </>
   )
 }

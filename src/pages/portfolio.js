@@ -5,6 +5,7 @@ import {useRouter} from 'next/router'
 import firebase from "../libs/clientApp"
 import {useCollection} from "react-firebase-hooks/firestore"
 import { useEffect, useState } from 'react'
+import Fade from 'react-reveal/Fade';
 // import Portcard from '../components/portcard'
 
 
@@ -78,7 +79,7 @@ export default function Portfolio({data, query}) {
       </div>
       <div className={styles["work-container"]}>
           {ports !== null ? ports.map((port, index) => {
-              return <Portcard key={index} item={port} />
+              return <Fade bottom key={index}><Portcard item={port} /></Fade>
           }) : <span>Loading...</span>}
       </div>
       </>

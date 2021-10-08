@@ -3,7 +3,7 @@ const { SitemapStream, streamToPromise } = require("sitemap");
 const { Readable } = require("stream");
 import firebase from "../../libs/clientApp"
 
-export default async (req, res) => {
+export default async function sitemap(req, res) {
   try {
     const collection = await firebase.firestore().collection("portfolio").where("type", "==", "Project");
     const items = (await collection.get()).docs;

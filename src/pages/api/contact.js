@@ -1,4 +1,4 @@
-export default function (req, res) {
+export default function contact (req, res) {
     let nodemailer = require('nodemailer')
     const EMAIL = process.env.EMAIL_ADDRESS
     const PASSWORD = process.env.EMAIL_PASSWORD
