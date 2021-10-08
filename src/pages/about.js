@@ -37,7 +37,7 @@ export default function About() {
         </Fade>
           <div className={styles["skills"]}>
             {!loading ? skills.docs.map((skill, index) => {
-              return <Fade><Skill key={index} name={skill.data().name} src={skill.data().src} /></Fade>
+              return <Fade key={index}><Skill name={skill.data().name} src={skill.data().src} /></Fade>
             }) : <span>Loading...</span>}
           </div>
       </div>

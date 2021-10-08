@@ -79,7 +79,7 @@ export default function Portfolio({data, query}) {
       </div>
       <div className={styles["work-container"]}>
           {ports !== null ? ports.map((port, index) => {
-              return <Fade bottom><Portcard key={index} item={port} /></Fade>
+              return <Fade bottom key={index}><Portcard item={port} /></Fade>
           }) : <span>Loading...</span>}
       </div>
       </>
