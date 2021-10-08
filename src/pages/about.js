@@ -42,7 +42,7 @@ export default function About({data}) {
         </div>
       
       <div>
-        <Fade direction="up" triggerOnce={true}>
+        <Fade direction="up" triggerOnce>
           <h3 className={styles["h3"]}>Expertise</h3>
           <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
         </Fade>

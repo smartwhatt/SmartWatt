@@ -49,3 +49,61 @@
   margin-top: 0;
   margin-bottom: auto;
 }
+
+.right{
+  margin: 2rem 20%;
+  text-align: right;
+  p {
+    text-indent: 2rem;
+    width: 40vw;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  h2{
+    margin-right: 2rem;
+    font-size: 3rem;
+  }
+  .call2act{
+    float: right;
+    margin-right: 3rem;
+  }
+  float: right;
+}
+
+.section{
+  h2 {
+    font-size: 3rem;
+  }
+  p {
+    text-indent: 2rem;
+    width: 40vw;
+    margin: 1rem auto;
+    font-size: 1.5rem;
+  }
+  width: 40vw;
+  padding: 1rem;
+  margin: 2rem 20%;
+}
+
+.call2act {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: p.$text-secondary;
+  width: fit-content;
+  border-radius: 0.5rem;
+  background-color: p.$background-primary-light;
+  margin: 1rem;
+}
+
+.para{
+  background-image: url("/img/title-image.png");
+  /* Set a specific height */
+  max-height: 50vh;
+  min-height: 50vh;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
