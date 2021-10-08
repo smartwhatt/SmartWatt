@@ -11,12 +11,21 @@ import Fade from 'react-reveal/Fade';
 const Title = dynamic(() => import('../components/title'))
 const Skill = dynamic(() => import('../components/skill'))
 
-export default function About() {
+export async function getServerSideProps(context) {
+  const collection = await firebase.firestore().collection("skills").orderBy("name", "asc");
+  const items = (await collection.get()).docs;
+  const data = items.map((item) => item.data())
+  return {
+    props: {data}, // will be passed to the page component as props
+  }
+}
+
+export default function About({data}) {
   const router = useRouter()
-  const [skills, loading, error ] = useCollection(
-    firebase.firestore().collection("skills").orderBy("name", "asc"),
-    {}
-  )
+  // const [skills, loading, error ] = useCollection(
+  //   firebase.firestore().collection("skills").orderBy("name", "asc"),
+  //   {}
+  // )
 
   return (
       <>
@@ -36,9 +45,9 @@ export default function About() {
           <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
         </Fade>
           <div className={styles["skills"]}>
-            {!loading ? skills.docs.map((skill, index) => {
-              return <Fade key={index}><Skill name={skill.data().name} src={skill.data().src} /></Fade>
-            }) : <span>Loading...</span>}
+            {data.map((skill, index) => {
+              return <Fade key={index}><Skill name={skill.name} src={skill.src} /></Fade>
+            })}
           </div>
       </div>
       
