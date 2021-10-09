@@ -171,3 +171,56 @@
     // box-shadow: rgba(255, 255, 255, 0.24) 0px .25rem 2.5rem;
     justify-content: space-evenly;
 }
+
+.icon{
+  // margin-top: .25rem;
+  vertical-align: bottom;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.edu-timeline{
+  background-color: p.$background-primary-light;
+}
+
+.node{
+  color: p.$text-secondary;
+}
+
+.social-container{
+  border-radius: 100%;
+  background-color: p.$background-primary-light;
+  width: fit-content;
+  padding: 1rem;
+  position:relative;
+  margin: .8rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: ease-in-out .2s;
+}
+
+.social-container:hover{
+  transform: scale(110%);
+}
+
+.social-card{
+  position: absolute;
+  z-index: 5;
+  color: p.$text-secondary;
+  right:calc(4rem - 4.5rem);
+  top:.5rem;
+  background-color: p.$secondary-light;
+  padding: .2rem;
+  border-radius: .2rem;
+  max-width: 4rem;
+  min-width: 2rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social-logo{
+  color: p.$text-secondary;
+}
