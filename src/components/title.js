@@ -12,8 +12,8 @@ export default function Title(props) {
             <h1 className={styles["title-header"]}>{props.title}</h1>
             <h2 className={styles["title-path"]}><Link href="/"><a>Home</a></Link> {props.path.split("/").map((path, index) => {
                 if (props.path.split("/").length-1 !== index)
-                return ` ${path.split('?')[0].capitalize()} >`
-                else return ` ${path.split('?')[0].capitalize()}`
+                return ` ${path.split('?')[0].split('#')[0].capitalize()} >`
+                else return ` ${path.split('?')[0].split('#')[0].capitalize()}`
             })}</h2>
         </div>
        

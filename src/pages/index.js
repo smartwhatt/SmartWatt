@@ -12,6 +12,8 @@ import { AiFillGithub, AiFillLinkedin, AiOutlineTwitter, AiOutlineMail } from "r
 import { FaDiscord } from "react-icons/fa"
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+
+// import { Parallax } from 'react-parallax';
  
 const Portcard = dynamic(() => import('../components/portcard'))
 const Skill = dynamic(() => import('../components/skill'))
@@ -52,6 +54,7 @@ export default function Home({project, skills}) {
       </Fade>
     </div>
 
+    {/* <Parallax blur={0} bgImage="/img/title-image.png" bgImageAlt="bg-image" strength={200}> */}
     <div className={styles["para"]}> 
       <div className={styles["section"], styles["right"]}>
         <Fade direction="up" cascade triggerOnce damping={0.1} >
@@ -61,6 +64,7 @@ export default function Home({project, skills}) {
         </Fade>
       </div>
     </div>
+    {/* </Parallax> */}
 
     <div className={styles["section"]}>
       <Fade direction="up" cascade triggerOnce damping={0.1} >
