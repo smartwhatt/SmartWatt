@@ -24,7 +24,7 @@ export default function Portcard(props) {
         <div className={styles["no-text-container"]}>
             <h3 className={styles["card-title"]}><Link href={`project/${props.item.title}`} >{state.work.title}</Link></h3>
             {props.item.des !== undefined ? <div><span>Description: </span><p>{props.item.des}</p></div> : null}
-            <div className={styles["card-github"]}>Github: {state.work.github}</div>
+            <div className={styles["card-github"]}>Github: <a href={state.work.github}>{state.work.github}</a></div>
         </div>
       )
   }

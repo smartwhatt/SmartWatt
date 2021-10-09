@@ -8,18 +8,24 @@ import { Fade } from "react-awesome-reveal";
 import firebase from "../libs/clientApp"
 
 const Portcard = dynamic(() => import('../components/portcard'))
+const Skill = dynamic(() => import('../components/skill'))
 
 export async function getServerSideProps(context) {
   let collection = await firebase.firestore().collection("portfolio").where("type", "==", "Project").orderBy("title", "asc").limit(4);
   let items = (await collection.get()).docs;
   const project = items.map((item) => item.data())
+
+  collection = await firebase.firestore().collection("skills").where("pinned", "==", true).orderBy("name", "asc").limit(5);
+  items = (await collection.get()).docs;
+  const skills = items.map((item) => item.data())
+
   return {
-    props: {project}, // will be passed to the page component as props
+    props: {project, skills}, // will be passed to the page component as props
   }
 }
 
-export default function Home({project}) {
-
+export default function Home({project, skills}) {
+  // console.log(skills)
   return (
     <>
     <div className={styles.parallax}>
@@ -63,6 +69,20 @@ export default function Home({project}) {
         <div className={styles["call2act"]}><Link href="/portfolio"><a>See more</a></Link></div>
       </Fade>
     </div>
+
+    <div className={styles["section"], styles["right"]}>
+        <Fade direction="up" cascade triggerOnce damping={0.1} >
+          <h2>Tools I've used</h2>
+          <div className={styles["skills-container"]}>
+            <Fade direction="right" triggerOnce={true} cascade damping={0.05}>
+              {skills.map((skill, index) => {
+                  return <Skill key={index} name={skill.name} src={skill.src}  />
+                })}
+            </Fade>
+          </div>
+          <div className={styles["call2act"]}><Link href="/about#skills"><a>There're more!</a></Link></div>
+        </Fade>
+      </div>
     </>
   )
 }
