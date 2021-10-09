@@ -1,6 +1,7 @@
 import styles from '../../styles/modules/portcard.module.scss'
 // import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import {useState} from 'react';
 import firebase from "../libs/clientApp"
 import { useDownloadURL } from 'react-firebase-hooks/storage';
@@ -15,6 +16,17 @@ export default function Portcard(props) {
 
   if (!loading && downloadUrl && state.rendering){
     setState({...state, work:{...state.work, preview:downloadUrl}, rendering:false});
+  }
+
+  if (props.textOnly){
+    if(props.item.type === "Project")
+      return (
+        <div className={styles["no-text-container"]}>
+            <h3 className={styles["card-title"]}><Link href={`project/${props.item.title}`} >{state.work.title}</Link></h3>
+            {props.item.des !== undefined ? <div><span>Description: </span><p>{props.item.des}</p></div> : null}
+            <div className={styles["card-github"]}>Github: {state.work.github}</div>
+        </div>
+      )
   }
 
   if (props.item.link !== undefined)

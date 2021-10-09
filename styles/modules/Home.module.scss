@@ -5,6 +5,27 @@
   .parallax{
     background-attachment: scroll;
   }
+  .para{
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .para{
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .para{
+    height: 80vh;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .para{
+    height: 90vh;
+  }
 }
 
 .parallax{
@@ -99,12 +120,23 @@
 .para{
   background-image: url("/img/title-image.png");
   /* Set a specific height */
-  max-height: 50vh;
-  min-height: 50vh;
-
+  position: relative;
+  min-height: 60vh;
+  // padding: 1rem;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  .right{
+    max-height: 60vh;
+  }
+}
+
+.projects-container{
+  display: flex;
+  width: 70vw;
+  justify-content: center;
+  flex-wrap: wrap;
 }

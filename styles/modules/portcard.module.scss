@@ -43,3 +43,22 @@
     background-size: 80%;
     filter: brightness(50%);
 }
+
+.no-text-container{
+    font-size: 1.5rem;
+    padding: 1rem;
+    .card-github {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    width: 30vw;
+    p {
+        width: inherit;
+    }
+
+    a {
+        text-decoration: initial;
+        cursor: pointer;
+    }
+}
