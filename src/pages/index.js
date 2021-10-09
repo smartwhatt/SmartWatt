@@ -80,7 +80,7 @@ export default function Home({project, skills}) {
                 })}
             </Fade>
           </div>
-          <div className={styles["call2act"]}><Link href="/about#skills"><a>There&apos;re more!</a></Link></div>
+          <div className={styles["call2act"]}><Link href="/about#skills"><a>There&apos;s more!</a></Link></div>
         </Fade>
       </div>
     </>
