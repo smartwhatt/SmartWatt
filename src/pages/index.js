@@ -72,7 +72,7 @@ export default function Home({project, skills}) {
 
     <div className={styles["section"], styles["right"]}>
         <Fade direction="up" cascade triggerOnce damping={0.1} >
-          <h2>Tools I've used</h2>
+          <h2>Tools I&apos;ve used</h2>
           <div className={styles["skills-container"]}>
             <Fade direction="right" triggerOnce={true} cascade damping={0.05}>
               {skills.map((skill, index) => {
@@ -80,7 +80,7 @@ export default function Home({project, skills}) {
                 })}
             </Fade>
           </div>
-          <div className={styles["call2act"]}><Link href="/about#skills"><a>There're more!</a></Link></div>
+          <div className={styles["call2act"]}><Link href="/about#skills"><a>There&apos;re more!</a></Link></div>
         </Fade>
       </div>
     </>
