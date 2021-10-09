@@ -107,12 +107,12 @@ export default function Home({project, skills}) {
 
             <VerticalTimelineElement className={styles["node"]} icon={<FcGraduationCap />} iconStyle={{ background: '#fff', color: '#fff' }}>
               <h3>2017 - 2021</h3>
-              <h4>Attended Junior Highschool at Suankularb Wittayalai School's Eplus+ Program</h4>
+              <h4>Attended Junior Highschool at Suankularb Wittayalai School&apos;s Eplus+ Program</h4>
             </VerticalTimelineElement>
 
             <VerticalTimelineElement className={styles["node"]} icon={<FcKindle />} iconStyle={{ background: '#fff', color: '#fff' }}>
               <h3>2021 - Present</h3>
-              <h4>Continue attending Highschool at Suankularb Wittayalai School's Eplus+ Program</h4>
+              <h4>Continue attending Highschool at Suankularb Wittayalai School&apos;s Eplus+ Program</h4>
             </VerticalTimelineElement>
           {/* </Fade> */}
         </VerticalTimeline>
@@ -125,31 +125,31 @@ export default function Home({project, skills}) {
         <h2 >Social Media</h2>
         <div className={styles["skills-container"]}>
           <Fade direction="right" triggerOnce={true} cascade damping={0.05}>
-            <a href="https://github.com/Jimmy-Tempest" target="_blank">
+            <a href="https://github.com/Jimmy-Tempest" target="_blank" rel="noreferrer">
               <div title={"Github"} className={styles["social-container"]}>
                   <span className={styles["social-card"]}>@Jimmy-Tempest</span>
                   <AiFillGithub size={75} className={styles["social-logo"]} />
               </div>
             </a>
-            <a href="https://www.linkedin.com/in/smart-wattanapornmongkol-b3b758207/" target="_blank">
+            <a href="https://www.linkedin.com/in/smart-wattanapornmongkol-b3b758207/" target="_blank" rel="noreferrer">
               <div title={"Linkedin"} className={styles["social-container"]}>
                   <span className={styles["social-card"]}>Smart Wattanapornmongkol</span>
                   <AiFillLinkedin size={75} className={styles["social-logo"]} />
               </div>
             </a>
-            <a href="https://discord.com/users/508507551999197225" target="_blank">
+            <a href="https://discord.com/users/508507551999197225" target="_blank" rel="noreferrer">
               <div title={"Discord"} className={styles["social-container"]}>
                   <span className={styles["social-card"]}>@Jimmy_Tempest#7862</span>
                   <FaDiscord size={75} className={styles["social-logo"]} />
               </div>
             </a>
-            <a href="https://twitter.com/Jimmy_Tempest" target="_blank">
+            <a href="https://twitter.com/Jimmy_Tempest" target="_blank" rel="noreferrer">
               <div title={"Twitter"} className={styles["social-container"]}>
                   <span className={styles["social-card"]}>@Jimmy_Tempest</span>
                   <AiOutlineTwitter size={75} className={styles["social-logo"]} />
               </div>
             </a>
-            <a href="mailto:smartwattana@gmail.com" target="_blank">
+            <a href="mailto:smartwattana@gmail.com" target="_blank" rel="noreferrer">
               <div title={"Email"} className={styles["social-container"]}>
                   <span className={styles["social-card"]}>smartwattana@gmail.com</span>
                   <AiOutlineMail size={75} className={styles["social-logo"]} />
