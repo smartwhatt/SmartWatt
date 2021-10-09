@@ -5,6 +5,33 @@
   .parallax{
     background-attachment: scroll;
   }
+  .para{
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .para{
+    height: 60vh;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .para{
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .para{
+    height: 80vh;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .para{
+    height: 90vh;
+  }
 }
 
 .parallax{
@@ -68,6 +95,10 @@
     margin-right: 3rem;
   }
   float: right;
+
+  .call2act:hover{
+    transform: scale(110%) rotate(-4deg) ;
+  }
 }
 
 .section{
@@ -83,27 +114,59 @@
   width: 40vw;
   padding: 1rem;
   margin: 2rem 20%;
+
+  .call2act:hover{
+    transform: scale(110%) rotate(4deg) ;
+  }
 }
 
 .call2act {
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
   color: p.$text-secondary;
   width: fit-content;
   border-radius: 0.5rem;
   background-color: p.$background-primary-light;
   margin: 1rem;
+  transition: ease-in-out .3s;
+  cursor: pointer;
 }
 
 .para{
   background-image: url("/img/title-image.png");
   /* Set a specific height */
-  max-height: 50vh;
+  position: relative;
   min-height: 50vh;
-
+  // padding: 1rem;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  .right{
+    max-height: 60vh;
+  }
+}
+
+.projects-container{
+  display: flex;
+  width: 70vw;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.skills-container{
+    min-width: 50vw;
+    max-width: 65vw;
+
+    border-radius: 1em;
+    margin: 1rem auto;
+    background-color: p.$background-secondary-light;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    // box-shadow: rgba(255, 255, 255, 0.24) 0px .25rem 2.5rem;
+    justify-content: space-evenly;
 }

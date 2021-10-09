@@ -8,6 +8,11 @@
     position:relative;
     margin: .8rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: ease-in-out .2s;
+}
+
+.skill-container:hover{
+    transform: scale(110%);
 }
 
 .skill-card{

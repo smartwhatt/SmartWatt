@@ -46,7 +46,7 @@ export default function About({data}) {
           <h3 className={styles["h3"]}>Expertise</h3>
           <p className={styles["expertise-paragraph"]}>I have experience with many tools and programming language which I listed some that I comfortable with below</p>
         </Fade>
-          <div className={styles["skills"]}>
+          <div className={styles["skills"]} id="skills">
           <Fade  triggerOnce={true} cascade damping={0.05}>
             {data.map((skill, index) => {
               return <Skill key={index} name={skill.name} src={skill.src}  />
