@@ -16,6 +16,7 @@ body {
   background-color: p.$background-secondary-light;
   color: p.$text-primary;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 a {
