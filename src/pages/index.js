@@ -96,7 +96,7 @@ export default function Home({project, skills}) {
 
     <div className={styles["section"] + " " + styles["center"]}>
       <Fade direction="up" cascade triggerOnce damping={0.1} >
-        <h2 >Education Path</h2>
+        <h2 >Educational Path</h2>
         <VerticalTimeline className="edu-timeline" align="alternate">
           {/* <Fade cascade triggerOnce damping={0.1} > */}
             <VerticalTimelineElement className={styles["node"]} icon={<FcGraduationCap />} iconStyle={{ background: '#fff', color: '#fff' }}>
