@@ -77,7 +77,7 @@ export default function Hero() {
         }}
       >
         {meta.name}
-        {meta.location ? ` · ${meta.location}` : ""}
+        {meta.location ? ` / ${meta.location}` : ""}
       </div>
 
       <div
