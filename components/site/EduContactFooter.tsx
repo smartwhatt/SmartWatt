@@ -447,16 +447,15 @@ export function Footer() {
           fontSize: 11,
           color: "var(--color-muted)",
           letterSpacing: 1,
-          textTransform: "uppercase",
         }}
       >
         <span>
-          © {meta.copyrightYear || new Date().getFullYear()} · {meta.name}
+          © {meta.copyrightYear || new Date().getFullYear()} {meta.name}
         </span>
-        <span>Built with care · Set in Ubuntu</span>
+        {/* <span>Built with care · Set in Ubuntu</span> */}
         <span>
           {meta.location}
-          {meta.timezone ? ` · ${meta.timezone}` : ""}
+          {meta.timezone ? ` / ${meta.timezone}` : ""}
           {meta.available && (
             <span style={{ color: "var(--color-accent)", marginLeft: 8 }}>
               ●
