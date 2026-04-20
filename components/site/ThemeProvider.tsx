@@ -26,8 +26,8 @@ export function ThemeProvider({
   initial: SiteContent;
 }) {
   const [mode, setMode] = useState<ThemeMode>(() => {
-    if (typeof window === "undefined") return "light";
-    return (localStorage.getItem("sw-theme") as ThemeMode) || "light";
+    if (typeof window === "undefined") return "dark";
+    return (localStorage.getItem("sw-theme") as ThemeMode) || "dark";
   });
 
   useEffect(() => {
