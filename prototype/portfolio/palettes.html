@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Smart — Palette + Type Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;1,400&family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; }
+  * { box-sizing: border-box; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="palette-systems.jsx"></script>
+<script type="text/babel">
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection title="Three palette + type systems for Concept A"
+                 subtitle="Each row: light + dark variant of the same system, applied to the Concept A hero. Pick one (or remix — e.g. 'System 2 colors with System 3 type')."
+                 gap={48}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 80 }}>
+          {/* SYSTEM 1 */}
+          <div>
+            <SystemHeader name="01 · Slate & Ember"
+                          desc="Cool slate ink + warm ember accent. Geist (sans) + Geist Mono. Modern, technical, slightly Vercel-adjacent without being derivative."
+                          swatches={['#f7f6f3', '#1c2024', '#cf5a3b', '#3a6a8a']} />
+            <div style={{ display: 'flex', gap: 32 }}>
+              <DCArtboard label="Light" width={1100} height={840}><Hero system="slate-light" /></DCArtboard>
+              <DCArtboard label="Dark"  width={1100} height={840}><Hero system="slate-dark"  /></DCArtboard>
+            </div>
+          </div>
+          {/* SYSTEM 2 */}
+          <div>
+            <SystemHeader name="02 · Paper & Ink"
+                          desc="Newsprint cream + true black + a single deep-blue accent. Newsreader (serif) for headlines + Geist for body + Geist Mono for metadata. Editorial, academic, paper-like."
+                          swatches={['#f4efe6', '#0a0908', '#1d4ed8', '#7a6f60']} />
+            <div style={{ display: 'flex', gap: 32 }}>
+              <DCArtboard label="Light" width={1100} height={840}><Hero system="paper-light" /></DCArtboard>
+              <DCArtboard label="Dark"  width={1100} height={840}><Hero system="paper-dark"  /></DCArtboard>
+            </div>
+          </div>
+          {/* SYSTEM 4 — Ubuntu */}
+          <div>
+            <SystemHeader name="04 · Ubuntu Blueprint  ★ built around your asks"
+                          desc="Ubuntu + Ubuntu Mono — your original headline font, refined. Warm off-white + a deeper, more grown-up blue (#2a6ed6) than your old #75B1F6 light-blue. Reads professional, still familiar. Easily the strongest fit if you want continuity with the old site."
+                          swatches={['#f4f1ec', '#0f1417', '#2a6ed6', '#8a7a6a']} />
+            <div style={{ display: 'flex', gap: 32 }}>
+              <DCArtboard label="Light" width={1100} height={840}><Hero system="ubuntu-light" /></DCArtboard>
+              <DCArtboard label="Dark"  width={1100} height={840}><Hero system="ubuntu-dark"  /></DCArtboard>
+            </div>
+          </div>
+
+          {/* SYSTEM 3 */}
+          <div>
+            <SystemHeader name="03 · Slab & Olive"
+                          desc="Warm off-white + olive green accent + soft graphite. IBM Plex Serif italic for emphasis + IBM Plex Sans for body + Plex Mono for metadata. Distinctive without being loud."
+                          swatches={['#f1ede4', '#15140f', '#5d6e3f', '#a8907a']} />
+            <div style={{ display: 'flex', gap: 32 }}>
+              <DCArtboard label="Light" width={1100} height={840}><Hero system="olive-light" /></DCArtboard>
+              <DCArtboard label="Dark"  width={1100} height={840}><Hero system="olive-dark"  /></DCArtboard>
+            </div>
+          </div>
+        </div>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

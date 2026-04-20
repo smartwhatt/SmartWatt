@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Ubuntu Blueprint theme ────────────────────────────────────
+   Tokens are set on [data-theme="light"|"dark"].
+   JS toggles the attribute; Tailwind reads the vars.
+   ─────────────────────────────────────────────────────────── */
+
+[data-theme="light"] {
+  --color-bg:          #f4f1ec;
+  --color-bg-alt:      #ebe6dc;
+  --color-ink:         #0f1417;
+  --color-muted:       #5e6873;
+  --color-accent:      #2a6ed6;
+  --color-accent2:     #8a7a6a;
+  --color-accent-dim:  rgba(42, 110, 214, 0.12);
+  --color-card:        #fbf9f4;
+  --color-rule:        rgba(15, 20, 23, 0.13);
+  --color-rule-soft:   rgba(15, 20, 23, 0.07);
+}
+
+[data-theme="dark"] {
+  --color-bg:          #0d1115;
+  --color-bg-alt:      #13181d;
+  --color-ink:         #f4f1ec;
+  --color-muted:       #7a8390;
+  --color-accent:      #6ba1ee;
+  --color-accent2:     #a89685;
+  --color-accent-dim:  rgba(107, 161, 238, 0.15);
+  --color-card:        #161b22;
+  --color-rule:        rgba(244, 241, 236, 0.1);
+  --color-rule-soft:   rgba(244, 241, 236, 0.05);
+}
+
+/* Admin panel uses separate admin-light/dark tokens */
+[data-admin-theme="light"] {
+  --adm-bg:          #f5f2ed;
+  --adm-bg-alt:      #ece7dc;
+  --adm-card:        #ffffff;
+  --adm-ink:         #14181c;
+  --adm-muted:       #5e6873;
+  --adm-muted-soft:  #8a929c;
+  --adm-rule:        rgba(15, 20, 23, 0.12);
+  --adm-rule-soft:   rgba(15, 20, 23, 0.06);
+  --adm-accent:      #2a6ed6;
+  --adm-accent-dim:  rgba(42, 110, 214, 0.1);
+  --adm-success:     #2e8f5c;
+  --adm-warn:        #c47b2a;
+}
+
+[data-admin-theme="dark"] {
+  --adm-bg:          #0f1317;
+  --adm-bg-alt:      #161b20;
+  --adm-card:        #191f26;
+  --adm-ink:         #f1ede6;
+  --adm-muted:       #8892a0;
+  --adm-muted-soft:  #606a78;
+  --adm-rule:        rgba(244, 241, 236, 0.1);
+  --adm-rule-soft:   rgba(244, 241, 236, 0.05);
+  --adm-accent:      #6ba1ee;
+  --adm-accent-dim:  rgba(107, 161, 238, 0.12);
+  --adm-success:     #5cc28a;
+  --adm-warn:        #d49756;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Site theme colours */
+  --color-bg:         var(--color-bg);
+  --color-bg-alt:     var(--color-bg-alt);
+  --color-ink:        var(--color-ink);
+  --color-muted:      var(--color-muted);
+  --color-accent:     var(--color-accent);
+  --color-accent2:    var(--color-accent2);
+  --color-card:       var(--color-card);
+
+  /* Fonts — var(--font-ubuntu) / var(--font-ubuntu-mono) are injected by next/font */
+  --font-sans: var(--font-ubuntu), Ubuntu, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-ubuntu-mono), "Ubuntu Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Globals ────────────────────────────────────────────────── */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #2a6ed6;
+  color: #fff;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  transition: background 0.4s, color 0.4s;
+}
+
+/* Fade-in animation for sections */
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadein {
+  animation: fadein 0.5s ease forwards;
 }
