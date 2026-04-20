@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SmartWatt
 
-## Getting Started
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-First, run the development server:
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Portfolio and personal website of Smart Wattanapornmongkol (Jimmy/Best). This site is collection of Jimmy's skills, project, certificates and Competitions.
+
+# Installation
+
+Clone this repository by running
+
+```powershell
+$ git clone https://github.com/Jimmy-Tempest/SmartWatt.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Note**: make sure git is properly install on your machine
+[Install Git](https://git-scm.com/downloads)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Change Directory in the cloned directory by
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+$ cd SmartWatt
+```
 
-## Learn More
+Install nodejs dependacy bu running
 
-To learn more about Next.js, take a look at the following resources:
+```powershell
+$ npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Note**: make sure node.js is properly install on your machine
+[Install Node](https://nodejs.org/en/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a file named `.env.local` with content
 
-## Deploy on Vercel
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_DATABASE_URL=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT=
+EMAIL_ADDRESS=
+EMAIL_PASSWORD=
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Note**: fill in each field with labeled content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Running the app
+
+## Production build (Reccommended)
+
+Compile the project by running
+
+```powershell
+$ npm run build
+```
+
+Start the site by running
+
+```powershell
+$ npm run start
+```
+
+The server the start running at [localhost](http://localhost:3000/) on port 3000
+
+## Dev Build
+
+Start the site by running
+
+```powershell
+$ npm run dev
+```
+
+The server the start running at [localhost](http://localhost:3000/) on port 3000
+**Note**: Any edit to any file will affect the appearance of the website in realtime as soon as the file is saved
