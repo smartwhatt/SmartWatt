@@ -58,7 +58,7 @@ export default function Nav() {
             textDecoration: "none",
           }}
         >
-          {meta.shortName} —
+          {meta.shortName}
         </a>
         <div style={{ display: "flex", gap: 28 }}>
           {["Index", "Work", "Research", "Education", "Contact"].map((l) => (
