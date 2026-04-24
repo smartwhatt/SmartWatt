@@ -1,132 +1,62 @@
 "use client";
 
 import { useState } from "react";
-import { useContent } from "./ThemeProvider";
-import { Lines } from "./Hero";
+import { useContent } from "./SiteContentProvider";
+import { Container, Eyebrow, FormLabel, Section, SectionHeading, Surface } from "./primitives";
 
 export function Education() {
-  const c = useContent();
-  const edu = c.education;
+  const { education } = useContent();
 
   return (
-    <section
-      id="education"
-      style={{ padding: "80px 48px", maxWidth: 1280, margin: "0 auto" }}
-    >
-      <div style={{ marginBottom: 56 }}>
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 11,
-            color: "var(--color-accent)",
-            letterSpacing: 1.5,
-            // textTransform: "uppercase",
-            marginBottom: 8,
-          }}
-        >
-          Education
-        </div>
-        <h2
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 300,
-            fontSize: "clamp(36px, 4.5vw, 56px)",
-            letterSpacing: -1.5,
-            margin: 0,
-          }}
-        >
-          A long{" "}
-          <em
-            style={{
-              color: "var(--color-accent)",
-              fontWeight: 500,
-              fontStyle: "normal",
-            }}
-          >
-            quiet
-          </em>{" "}
-          path.
-        </h2>
-      </div>
-
-      <div style={{ position: "relative", paddingLeft: 32 }}>
-        <div
-          style={{
-            position: "absolute",
-            top: 8,
-            bottom: 8,
-            left: 4,
-            width: 1,
-            background: "var(--color-rule)",
-          }}
+    <Section id="education">
+      <Container className="space-y-10">
+        <SectionHeading
+          eyebrow="Education"
+          title={
+            <>
+              A long <em className="font-medium not-italic text-[var(--color-accent)]">quiet</em> path.
+            </>
+          }
         />
-        {edu.map((row, i) => (
-          <div
-            key={row.id || i}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "120px 1fr",
-              padding: "20px 0",
-              gap: 32,
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                left: -32,
-                top: 28,
-                width: 9,
-                height: 9,
-                background: i === 0 ? "var(--color-accent)" : "var(--color-bg)",
-                border: `1px solid ${i === 0 ? "var(--color-accent)" : "var(--color-muted)"}`,
-                borderRadius: "50%",
-              }}
-            />
-            <div
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 13,
-                color: "var(--color-muted)",
-                paddingTop: 4,
-                letterSpacing: 0.5,
-              }}
-            >
-              {row.year}
-            </div>
-            <div>
+
+        <div className="relative pl-6 sm:pl-8">
+          <div className="absolute bottom-2 left-0 top-2 w-px bg-[var(--color-rule)]" />
+          <div className="space-y-6">
+            {education.map((item, index) => (
               <div
-                style={{
-                  fontSize: 19,
-                  fontWeight: 500,
-                  marginBottom: 4,
-                  color: "var(--color-ink)",
-                }}
+                key={item.id || index}
+                className="relative grid gap-3 sm:grid-cols-[6rem_minmax(0,1fr)] sm:gap-6"
               >
-                {row.school}
+                <div
+                  className={[
+                    "absolute -left-[1.85rem] top-1.5 h-3 w-3 rounded-full border",
+                    index === 0
+                      ? "border-[var(--color-accent)] bg-[var(--color-accent)]"
+                      : "border-[var(--color-muted)] bg-[var(--color-bg)]",
+                  ].join(" ")}
+                />
+                <div className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">
+                  {item.year}
+                </div>
+                <Surface className="p-5 sm:p-6">
+                  <h3 className="text-xl font-medium text-[var(--color-ink)]">
+                    {item.school}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
+                    {item.description}
+                  </p>
+                </Surface>
               </div>
-              <div
-                style={{
-                  fontSize: 14,
-                  color: "var(--color-muted)",
-                  lineHeight: 1.5,
-                }}
-              >
-                {row.description}
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      </Container>
+    </Section>
   );
 }
 
 export function Contact() {
-  const c = useContent();
-  const contact = c.contact;
-  const methods = contact.methods;
-
+  const { contact } = useContent();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -136,333 +66,143 @@ export function Contact() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const onSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault();
-    const errs: Record<string, string> = {};
-    if (!form.name.trim()) errs.name = "Required";
-    if (!form.email.trim() || !/.+@.+\..+/.test(form.email))
-      errs.email = "Valid email required";
-    if (!form.subject.trim()) errs.subject = "Required";
-    if (!form.body.trim() || form.body.length < 10)
-      errs.body = "A few sentences please";
-    setErrors(errs);
-    if (Object.keys(errs).length === 0) {
+  const onSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const nextErrors: Record<string, string> = {};
+    if (!form.name.trim()) nextErrors.name = "Required";
+    if (!form.email.trim() || !/.+@.+\..+/.test(form.email)) nextErrors.email = "Valid email required";
+    if (!form.subject.trim()) nextErrors.subject = "Required";
+    if (!form.body.trim() || form.body.length < 10) nextErrors.body = "A few sentences please";
+
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length === 0) {
       setSent(true);
       setForm({ name: "", email: "", subject: "", body: "" });
-      setTimeout(() => setSent(false), 6000);
+      window.setTimeout(() => setSent(false), 6000);
     }
   };
 
-  const inputStyle = (key: string): React.CSSProperties => ({
-    width: "100%",
-    background: "transparent",
-    border: "none",
-    borderBottom: `1px solid ${errors[key] ? "#c44" : "var(--color-rule)"}`,
-    color: "var(--color-ink)",
-    fontFamily: "var(--font-sans)",
-    fontSize: 17,
-    padding: "14px 0 12px",
-    outline: "none",
-    transition: "border-color 0.2s",
-  });
+  const inputClassName =
+    "w-full border-0 border-b bg-transparent px-0 py-3 text-base text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-muted)] focus:border-[var(--color-accent)]";
 
   return (
-    <section
-      id="contact"
-      style={{
-        padding: "80px 48px",
-        maxWidth: 1280,
-        margin: "0 auto",
-        position: "relative",
-      }}
-    >
-      <div style={{ marginBottom: 56 }}>
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 11,
-            color: "var(--color-accent)",
-            letterSpacing: 1.5,
-            // textTransform: "uppercase",
-            marginBottom: 8,
-          }}
-        >
-          Contact
-        </div>
-        <h2
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 300,
-            fontSize: "clamp(36px, 4.5vw, 56px)",
-            letterSpacing: -1.5,
-            margin: 0,
-          }}
-        >
-          Let&apos;s{" "}
-          <em
-            style={{
-              color: "var(--color-accent)",
-              fontWeight: 500,
-              fontStyle: "normal",
-            }}
-          >
-            talk
-          </em>
-          .
-        </h2>
-      </div>
+    <Section id="contact">
+      <Container className="space-y-10">
+        <SectionHeading
+          eyebrow="Contact"
+          title={
+            <>
+              Let&apos;s <em className="font-medium not-italic text-[var(--color-accent)]">talk</em>.
+            </>
+          }
+        />
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
-        {/* Left: links */}
-        <div>
-          {contact.intro && (
-            <p
-              style={{
-                fontSize: 17,
-                lineHeight: 1.6,
-                color: "var(--color-muted)",
-                marginTop: 0,
-                marginBottom: 32,
-              }}
-            >
-              {contact.intro}
-            </p>
-          )}
-          <div style={{ borderTop: "1px solid var(--color-rule)" }}>
-            {methods.map((m, i) => (
-              <div
-                key={m.id || i}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "120px 1fr",
-                  padding: "18px 0",
-                  borderBottom: "1px solid var(--color-rule)",
-                  alignItems: "baseline",
-                  gap: 16,
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--color-muted)",
-                    letterSpacing: 1,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {m.label}
-                </div>
-                {m.href ? (
-                  <a
-                    href={m.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      fontSize: 15,
-                      color: "var(--color-ink)",
-                      textDecoration: "none",
-                      borderBottom: "1px solid var(--color-accent)",
-                      paddingBottom: 2,
-                      width: "fit-content",
-                    }}
-                  >
-                    {m.value}
-                  </a>
-                ) : (
-                  <span style={{ fontSize: 15, color: "var(--color-ink)" }}>
-                    {m.value}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <Surface className="p-6 sm:p-8">
+            {contact.intro ? (
+              <p className="max-w-xl text-base leading-8 text-[var(--color-muted)]">
+                {contact.intro}
+              </p>
+            ) : null}
 
-        {/* Right: contact form */}
-        <div>
-          <form onSubmit={onSubmit} style={{ position: "relative" }}>
-            {sent && (
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "var(--color-bg)",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  zIndex: 10,
-                  padding: 24,
-                  animation: "fadein 0.4s",
-                }}
-              >
+            <div className="mt-8 border-t border-[var(--color-rule)]">
+              {contact.methods.map((method, index) => (
                 <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--color-accent)",
-                    letterSpacing: 1.5,
-                    textTransform: "uppercase",
-                    marginBottom: 12,
-                  }}
+                  key={method.id || index}
+                  className="grid gap-2 border-b border-[var(--color-rule)] py-5 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-4"
                 >
-                  ● message received
-                </div>
-                <div
-                  style={{
-                    fontSize: 24,
-                    fontWeight: 500,
-                    marginBottom: 8,
-                    color: "var(--color-ink)",
-                  }}
-                >
-                  Thank you.
-                </div>
-                <div
-                  style={{
-                    color: "var(--color-muted)",
-                    fontSize: 15,
-                    lineHeight: 1.5,
-                  }}
-                >
-                  I&apos;ll reply as soon as I can — usually within a couple of
-                  days.
-                </div>
-              </div>
-            )}
+                  <div className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                    {method.label}
+                  </div>
 
-            {(["name", "email", "subject"] as const).map((k) => (
-              <div key={k} style={{ marginBottom: 20 }}>
-                <label
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 10,
-                    color: "var(--color-muted)",
-                    letterSpacing: 1,
-                    textTransform: "uppercase",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span>{k}</span>
-                  {errors[k] && (
-                    <span style={{ color: "#c44", textTransform: "none" }}>
-                      {errors[k]}
-                    </span>
+                  {method.href ? (
+                    <a
+                      href={method.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-fit border-b border-[var(--color-accent)] pb-1 text-sm text-[var(--color-ink)] transition hover:text-[var(--color-accent-strong)]"
+                    >
+                      {method.value}
+                    </a>
+                  ) : (
+                    <span className="text-sm text-[var(--color-ink)]">{method.value}</span>
                   )}
-                </label>
-                <input
-                  type={k === "email" ? "email" : "text"}
-                  value={form[k]}
-                  onChange={(e) => setForm({ ...form, [k]: e.target.value })}
-                  style={inputStyle(k)}
+                </div>
+              ))}
+            </div>
+          </Surface>
+
+          <Surface className="relative overflow-hidden p-6 sm:p-8">
+            {sent ? (
+              <div className="absolute inset-0 z-10 flex animate-fadein flex-col justify-center bg-[var(--color-bg)]/95 p-8 backdrop-blur-sm">
+                <Eyebrow className="mb-3">● message received</Eyebrow>
+                <div className="text-3xl font-medium text-[var(--color-ink)]">Thank you.</div>
+                <div className="mt-2 max-w-md text-sm leading-7 text-[var(--color-muted)]">
+                  I&apos;ll reply as soon as I can, usually within a couple of days.
+                </div>
+              </div>
+            ) : null}
+
+            <form onSubmit={onSubmit} className="space-y-6">
+              {(["name", "email", "subject"] as const).map((key) => (
+                <div key={key}>
+                  <FormLabel label={key} error={errors[key]} />
+                  <input
+                    type={key === "email" ? "email" : "text"}
+                    value={form[key]}
+                    onChange={(event) =>
+                      setForm((current) => ({ ...current, [key]: event.target.value }))
+                    }
+                    className={`${inputClassName} ${errors[key] ? "border-b-[#ff8f8f]" : "border-b-[var(--color-rule)]"}`}
+                  />
+                </div>
+              ))}
+
+              <div>
+                <FormLabel label="Message" error={errors.body} />
+                <textarea
+                  rows={5}
+                  value={form.body}
+                  onChange={(event) =>
+                    setForm((current) => ({ ...current, body: event.target.value }))
+                  }
+                  className={`${inputClassName} min-h-32 resize-y ${errors.body ? "border-b-[#ff8f8f]" : "border-b-[var(--color-rule)]"}`}
                 />
               </div>
-            ))}
 
-            <div style={{ marginBottom: 28 }}>
-              <label
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 10,
-                  color: "var(--color-muted)",
-                  letterSpacing: 1,
-                  textTransform: "uppercase",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-full border border-[var(--color-ink)] bg-[var(--color-ink)] px-5 py-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--color-bg)] transition hover:-translate-y-0.5"
               >
-                <span>Message</span>
-                {errors.body && (
-                  <span style={{ color: "#c44", textTransform: "none" }}>
-                    {errors.body}
-                  </span>
-                )}
-              </label>
-              <textarea
-                rows={5}
-                value={form.body}
-                onChange={(e) => setForm({ ...form, body: e.target.value })}
-                style={{
-                  ...inputStyle("body"),
-                  resize: "vertical",
-                  minHeight: 120,
-                }}
-              />
-            </div>
-
-            <button
-              type="submit"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 12,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                padding: "14px 22px",
-                background: "var(--color-ink)",
-                color: "var(--color-bg)",
-                border: "none",
-                borderRadius: 2,
-                cursor: "pointer",
-                transition: "transform 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "translateY(-2px)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "translateY(0)")
-              }
-            >
-              Send message →
-            </button>
-          </form>
+                Send message →
+              </button>
+            </form>
+          </Surface>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
 
 export function Footer() {
-  const c = useContent();
-  const meta = c.meta;
+  const { meta } = useContent();
 
   return (
-    <footer
-      style={{
-        borderTop: "1px solid var(--color-rule)",
-        marginTop: 80,
-        padding: "40px 48px 32px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 16,
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          color: "var(--color-muted)",
-          letterSpacing: 1,
-        }}
-      >
+    <footer className="mt-12 border-t border-[var(--color-rule)] py-8 sm:mt-16 sm:py-10">
+      <Container className="flex flex-col gap-3 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
         <span>
           © {meta.copyrightYear || new Date().getFullYear()} {meta.name}
         </span>
-        {/* <span>Built with care · Set in Ubuntu</span> */}
-        <span>
-          {meta.location}
-          {meta.timezone ? ` / ${meta.timezone}` : ""}
-          {meta.available && (
-            <span style={{ color: "var(--color-accent)", marginLeft: 8 }}>
-              ●
-            </span>
-          )}
+        <span className="flex flex-wrap items-center gap-2 sm:justify-end">
+          <span>
+            {meta.location}
+            {meta.timezone ? ` / ${meta.timezone}` : ""}
+          </span>
+          {meta.available ? <span className="text-[var(--color-accent)]">●</span> : null}
         </span>
-      </div>
+      </Container>
     </footer>
   );
 }

@@ -28,13 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // data-theme is toggled client-side by ThemeProvider
-    <html
-      lang="en"
-      data-theme="dark"
-      className={`${ubuntu.variable} ${ubuntuMono.variable}`}
-    >
-      <body>{children}</body>
+    <html lang="en" className={`${ubuntu.variable} ${ubuntuMono.variable}`}>
+      <body className="bg-[var(--color-bg)] text-[var(--color-ink)] antialiased">
+        {children}
+      </body>
     </html>
   );
 }

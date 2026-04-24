@@ -1,116 +1,92 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useContent } from "./ThemeProvider";
+import { useEffect, useState } from "react";
+import { useContent } from "./SiteContentProvider";
+import { Container, Section, Surface } from "./primitives";
 
-const N = 96;
+const SAMPLE_COUNT = 96;
 
-function seedBars(n: number, sd: number): number[] {
-  let s = sd * 9301 + 49297;
-  const r = () => {
-    s = (s * 9301 + 49297) % 233280;
-    return s / 233280;
+function seedBars(count: number, seed: number) {
+  let value = seed * 9301 + 49297;
+  const random = () => {
+    value = (value * 9301 + 49297) % 233280;
+    return value / 233280;
   };
-  return Array.from({ length: n }, (_, i) => {
-    const tt = i / n;
-    const env =
+
+  return Array.from({ length: count }, (_, index) => {
+    const time = index / count;
+    const envelope =
       0.35 +
-      0.4 * Math.sin(tt * Math.PI * 1.6) +
-      0.2 * Math.sin(tt * Math.PI * 5 + sd);
-    return Math.max(0.12, Math.min(1, env + (r() - 0.5) * 0.3));
+      0.4 * Math.sin(time * Math.PI * 1.6) +
+      0.2 * Math.sin(time * Math.PI * 5 + seed);
+
+    return Math.max(0.12, Math.min(1, envelope + (random() - 0.5) * 0.3));
   });
 }
 
 export default function SignalBand() {
-  const c = useContent();
-  const caption = c.signal.caption || "three things shipping right now ↓";
+  const { signal } = useContent();
+  const caption = signal.caption || "three things shipping right now ↓";
 
-  const [seed, setSeed] = useState(1);
-  const [bars, setBars] = useState(() => seedBars(N, 1));
+  const [frame, setFrame] = useState(1);
+  const [bars, setBars] = useState(() => seedBars(SAMPLE_COUNT, 1));
   const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setSeed((s) => {
-        const ns = s + 1;
-        setBars(seedBars(N, ns));
-        return ns;
+    const intervalId = window.setInterval(() => {
+      setFrame((current) => {
+        const next = current + 1;
+        setBars(seedBars(SAMPLE_COUNT, next));
+        return next;
       });
     }, 1800);
-    return () => clearInterval(id);
+
+    return () => window.clearInterval(intervalId);
   }, []);
 
   return (
-    <section
-      style={{ padding: "40px 48px 80px", maxWidth: 1280, margin: "0 auto" }}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          color: "var(--color-muted)",
-          letterSpacing: 1.5,
-          // textTransform: "uppercase",
-          marginBottom: 14,
-        }}
-      >
-        <span>signal / live / {N} samples</span>
-        <span style={{ color: "var(--color-accent)" }}>
-          ● tracking — frame {seed.toString().padStart(4, "0")}
-        </span>
-      </div>
+    <Section className="pt-0">
+      <Container>
+        <Surface
+          className="p-5 sm:p-6"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
+          <div className="mb-4 flex flex-col gap-2 font-mono text-[0.62rem] uppercase tracking-[0.26em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
+            <span>signal / live / {SAMPLE_COUNT} samples</span>
+            <span className="text-[var(--color-accent)]">
+              ● tracking / frame {frame.toString().padStart(4, "0")}
+            </span>
+          </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-end",
-          gap: 3,
-          height: 120,
-          padding: "8px 0",
-          borderTop: "1px solid var(--color-rule)",
-          borderBottom: "1px solid var(--color-rule)",
-        }}
-      >
-        {bars.map((h, i) => {
-          const isAccent = i % 11 === 0;
-          return (
-            <div
-              key={i}
-              style={{
-                flex: 1,
-                height: `${h * 100}%`,
-                background: isAccent
-                  ? "var(--color-accent)"
-                  : "var(--color-accent2)",
-                opacity: isAccent ? 1 : hovering ? 0.8 : 0.55,
-                borderRadius: 1,
-                transition: `height 0.6s cubic-bezier(.2,.6,.2,1) ${i * 4}ms, opacity 0.3s`,
-              }}
-            />
-          );
-        })}
-      </div>
+          <div className="flex h-28 items-end gap-1 border-y border-[var(--color-rule)] py-3 sm:h-32">
+            {bars.map((height, index) => {
+              const isAccent = index % 11 === 0;
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 12,
-          fontFamily: "var(--font-mono)",
-          fontSize: 10,
-          color: "var(--color-muted)",
-          letterSpacing: 1,
-          textTransform: "uppercase",
-        }}
-      >
-        <span>t = 0</span>
-        <span>{caption}</span>
-        <span>t = now</span>
-      </div>
-    </section>
+              return (
+                <div
+                  key={index}
+                  className={[
+                    "min-w-0 flex-1 rounded-sm transition-all duration-500 ease-out",
+                    isAccent ? "bg-[var(--color-accent)]" : "bg-[var(--color-accent2)]",
+                    hovering || isAccent ? "opacity-100" : "opacity-60",
+                  ].join(" ")}
+                  style={{
+                    height: `${height * 100}%`,
+                    transitionDelay: `${index * 4}ms`,
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          <div className="mt-3 flex flex-col gap-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
+            <span>t = 0</span>
+            <span className="text-[var(--color-accent-strong)]">{caption}</span>
+            <span>t = now</span>
+          </div>
+        </Surface>
+      </Container>
+    </Section>
   );
 }

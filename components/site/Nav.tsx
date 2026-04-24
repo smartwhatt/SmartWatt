@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTheme, useModeToggle, useContent } from "./ThemeProvider";
+import { useEffect, useState } from "react";
+import { useContent } from "./SiteContentProvider";
+import { Container } from "./primitives";
+
+const links = ["Index", "Work", "Research", "Education", "Contact"] as const;
 
 export default function Nav() {
-  const mode = useTheme();
-  const toggle = useModeToggle();
-  const c = useContent();
-  const meta = c.meta;
-
+  const { meta } = useContent();
   const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -18,96 +18,36 @@ export default function Nav() {
 
   return (
     <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        background: scrolled
-          ? "color-mix(in srgb, var(--color-bg) 94%, transparent)"
-          : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled
-          ? "1px solid var(--color-rule)"
-          : "1px solid transparent",
-        transition: "background 0.3s, border-color 0.3s",
-      }}
+      className={[
+        "fixed inset-x-0 top-0 z-50 border-b transition",
+        scrolled
+          ? "border-[var(--color-rule)] bg-[color-mix(in_srgb,var(--color-bg)_78%,transparent)] backdrop-blur-xl"
+          : "border-transparent bg-transparent",
+      ].join(" ")}
     >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
-          alignItems: "center",
-          padding: "18px 48px",
-          fontFamily: "var(--font-mono)",
-          fontSize: 12,
-          letterSpacing: 0.5,
-          textTransform: "uppercase",
-          color: "var(--color-muted)",
-        }}
-      >
-        <a
-          href="#top"
-          style={{
-            color: "var(--color-ink)",
-            fontWeight: 600,
-            textDecoration: "none",
-          }}
-        >
+      <Container className="flex min-h-18 items-center justify-between gap-6 py-4 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+        <a href="#top" className="shrink-0 text-[var(--color-ink)]">
           {meta.shortName}
         </a>
-        <div style={{ display: "flex", gap: 28 }}>
-          {["Index", "Work", "Research", "Education", "Contact"].map((l) => (
+
+        <div className="hidden items-center gap-7 md:flex">
+          {links.map((label) => (
             <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="nav-link"
-              style={{
-                color: "var(--color-muted)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--color-ink)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--color-muted)")
-              }
+              key={label}
+              href={`#${label.toLowerCase()}`}
+              className="transition hover:text-[var(--color-ink)]"
             >
-              {l}
+              {label}
             </a>
           ))}
         </div>
-        <div
-          style={{
-            display: "flex",
-            gap: 14,
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          {meta.available && (
-            <span style={{ color: "var(--color-accent)" }}>● available</span>
-          )}
-          {/* <button
-            onClick={() => toggle(mode === 'light' ? 'dark' : 'light')}
-            style={{
-              background: 'transparent', border: '1px solid var(--color-rule)',
-              color: 'var(--color-ink)', fontFamily: 'var(--font-mono)', fontSize: 11,
-              letterSpacing: 0.5, textTransform: 'uppercase', padding: '6px 10px',
-              borderRadius: 2, cursor: 'pointer', transition: 'background 0.2s, border-color 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'var(--color-bg-alt)'; e.currentTarget.style.borderColor = 'var(--color-muted)' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'var(--color-rule)' }}
-            aria-label="Toggle theme">
-            {mode === 'light' ? '◐ Dark' : '◑ Light'}
-          </button> */}
+
+        <div className="flex shrink-0 items-center gap-3">
+          {meta.available ? (
+            <span className="text-[var(--color-accent)]">● available</span>
+          ) : null}
         </div>
-      </div>
+      </Container>
     </nav>
   );
 }

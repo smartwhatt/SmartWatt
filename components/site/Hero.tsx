@@ -1,48 +1,49 @@
 "use client";
 
-import { useContent } from "./ThemeProvider";
 import { Fragment } from "react";
+import { useContent } from "./SiteContentProvider";
+import { ActionLink, Container, Section, Surface } from "./primitives";
 
-// Parse headline markup: [word] → accent, {word} → bold
 function parseHeadline(str: string) {
   if (!str) return null;
+
   const parts = str.split(/(\[[^\]]+\]|\{[^}]+\})/g);
-  return parts.map((p, i) => {
-    if (/^\[.+\]$/.test(p)) {
+
+  return parts.map((part, index) => {
+    if (/^\[.+\]$/.test(part)) {
       return (
         <em
-          key={i}
-          style={{
-            color: "var(--color-accent)",
-            fontWeight: 500,
-            fontStyle: "normal",
-          }}
+          key={index}
+          className="font-medium not-italic text-[var(--color-accent)]"
         >
-          {p.slice(1, -1)}
+          {part.slice(1, -1)}
         </em>
       );
     }
-    if (/^\{.+\}$/.test(p)) {
+
+    if (/^\{.+\}$/.test(part)) {
       return (
-        <span key={i} style={{ fontWeight: 500 }}>
-          {p.slice(1, -1)}
+        <span key={index} className="font-medium">
+          {part.slice(1, -1)}
         </span>
       );
     }
-    return <Fragment key={i}>{p}</Fragment>;
+
+    return <Fragment key={index}>{part}</Fragment>;
   });
 }
 
-// Render multiline text preserving \n
 export function Lines({ text }: { text: string }) {
   if (!text) return null;
+
   const lines = text.split("\n");
+
   return (
     <>
-      {lines.map((ln, i) => (
-        <Fragment key={i}>
-          {ln}
-          {i < lines.length - 1 && <br />}
+      {lines.map((line, index) => (
+        <Fragment key={index}>
+          {line}
+          {index < lines.length - 1 ? <br /> : null}
         </Fragment>
       ))}
     </>
@@ -50,211 +51,79 @@ export function Lines({ text }: { text: string }) {
 }
 
 export default function Hero() {
-  const c = useContent();
-  const hero = c.hero;
-  const meta = c.meta;
+  const { hero, meta } = useContent();
 
   return (
-    <section
-      id="index"
-      style={{
-        padding: "160px 48px 80px",
-        maxWidth: 1280,
-        margin: "0 auto",
-        position: "relative",
-      }}
-    >
-      <div
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 12,
-          color: "var(--color-accent)",
-          letterSpacing: 1.5,
-          marginBottom: 36,
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-        }}
-      >
-        {meta.name}
-        {meta.location ? ` / ${meta.location}` : ""}
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 320px",
-          gap: 56,
-          alignItems: "start",
-        }}
-      >
-        <div>
-          <h1
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 300,
-              fontSize: "clamp(48px, 7vw, 96px)",
-              lineHeight: 1.0,
-              letterSpacing: -2.5,
-              margin: "0 0 32px",
-            }}
-          >
-            {parseHeadline(hero.headlineLine1)}
-            <br />
-            {parseHeadline(hero.headlineLine2)}
-            <br />
-            {parseHeadline(hero.headlineLine3)}
-          </h1>
-          <p
-            style={{
-              fontSize: 19,
-              lineHeight: 1.55,
-              color: "var(--color-muted)",
-              maxWidth: 580,
-              margin: "0 0 40px",
-            }}
-          >
-            {hero.intro}
-          </p>
-          <div style={{ display: "flex", gap: 14 }}>
-            <a
-              href="#work"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 12,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                padding: "12px 18px",
-                background: "var(--color-ink)",
-                color: "var(--color-bg)",
-                textDecoration: "none",
-                borderRadius: 2,
-                transition: "transform 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "translateY(-2px)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "translateY(0)")
-              }
-            >
-              View work →
-            </a>
-            <a
-              href="#contact"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 12,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                padding: "12px 18px",
-                background: "transparent",
-                color: "var(--color-ink)",
-                textDecoration: "none",
-                borderRadius: 2,
-                border: "1px solid var(--color-rule)",
-                transition: "border-color 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.borderColor = "var(--color-ink)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.borderColor = "var(--color-rule)")
-              }
-            >
-              Get in touch
-            </a>
-          </div>
+    <Section id="index" className="pt-32 sm:pt-40 lg:pt-44">
+      <Container>
+        <div className="mb-8 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.28em] text-[var(--color-accent)] sm:mb-10">
+          <span>{meta.name}</span>
+          {meta.location ? (
+            <span className="text-[var(--color-muted)]">/ {meta.location}</span>
+          ) : null}
         </div>
 
-        <div>
-          <div
-            style={{
-              borderLeft: "1px solid var(--color-rule)",
-              paddingLeft: 24,
-            }}
-          >
-            {hero.currently && (
-              <>
-                <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 10,
-                    color: "var(--color-muted)",
-                    letterSpacing: 1,
-                    textTransform: "uppercase",
-                    marginBottom: 14,
-                  }}
-                >
-                  Currently
-                </div>
-                <div
-                  style={{
-                    fontSize: 14,
-                    lineHeight: 1.55,
-                    marginBottom: 24,
-                    color: "var(--color-ink)",
-                  }}
-                >
-                  <Lines text={hero.currently} />
-                </div>
-              </>
-            )}
-            {hero.openTo && (
-              <>
-                <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 10,
-                    color: "var(--color-muted)",
-                    letterSpacing: 1,
-                    textTransform: "uppercase",
-                    marginBottom: 14,
-                  }}
-                >
-                  Open to
-                </div>
-                <div
-                  style={{
-                    fontSize: 14,
-                    lineHeight: 1.55,
-                    marginBottom: 24,
-                    color: "var(--color-ink)",
-                  }}
-                >
-                  <Lines text={hero.openTo} />
-                </div>
-              </>
-            )}
-            {hero.stack && (
-              <>
-                <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 10,
-                    color: "var(--color-muted)",
-                    letterSpacing: 1,
-                    textTransform: "uppercase",
-                    marginBottom: 14,
-                  }}
-                >
-                  Stack
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 12,
-                    lineHeight: 1.7,
-                    color: "var(--color-muted)",
-                  }}
-                >
-                  <Lines text={hero.stack} />
-                </div>
-              </>
-            )}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-14">
+          <div>
+            <h1 className="max-w-5xl text-[clamp(3.2rem,9vw,7rem)] font-light leading-[0.94] tracking-[-0.09em] text-[var(--color-ink)]">
+              {parseHeadline(hero.headlineLine1)}
+              <br />
+              {parseHeadline(hero.headlineLine2)}
+              <br />
+              {parseHeadline(hero.headlineLine3)}
+            </h1>
+
+            <p className="mt-8 max-w-2xl text-base leading-8 text-[var(--color-muted)] sm:text-lg">
+              {hero.intro}
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ActionLink href="#work" invert>
+                View work →
+              </ActionLink>
+              <ActionLink href="#contact">Get in touch</ActionLink>
+            </div>
           </div>
+
+          <Surface className="relative overflow-hidden p-6 sm:p-8">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--color-accent),transparent)] opacity-60" />
+            <div className="space-y-7 border-l border-[var(--color-rule)] pl-5 sm:pl-6">
+              {hero.currently ? (
+                <div>
+                  <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+                    Currently
+                  </div>
+                  <div className="text-sm leading-7 text-[var(--color-ink)]">
+                    <Lines text={hero.currently} />
+                  </div>
+                </div>
+              ) : null}
+
+              {hero.openTo ? (
+                <div>
+                  <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+                    Open to
+                  </div>
+                  <div className="text-sm leading-7 text-[var(--color-ink)]">
+                    <Lines text={hero.openTo} />
+                  </div>
+                </div>
+              ) : null}
+
+              {hero.stack ? (
+                <div>
+                  <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+                    Stack
+                  </div>
+                  <div className="font-mono text-xs leading-7 text-[var(--color-muted)]">
+                    <Lines text={hero.stack} />
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </Surface>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

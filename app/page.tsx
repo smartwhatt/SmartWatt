@@ -1,5 +1,5 @@
 import { fetchContent } from '@/lib/content'
-import { ThemeProvider } from '@/components/site/ThemeProvider'
+import { SiteContentProvider } from '@/components/site/SiteContentProvider'
 import Nav from '@/components/site/Nav'
 import Hero from '@/components/site/Hero'
 import SignalBand from '@/components/site/SignalBand'
@@ -14,7 +14,7 @@ export default async function HomePage() {
   const content = await fetchContent()
 
   return (
-    <ThemeProvider initial={content}>
+    <SiteContentProvider initial={content}>
       <div id="top">
         <Nav />
         <main>
@@ -27,6 +27,6 @@ export default async function HomePage() {
         </main>
         <Footer />
       </div>
-    </ThemeProvider>
+    </SiteContentProvider>
   )
 }

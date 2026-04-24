@@ -5,7 +5,6 @@ import {
   DbWorkItem,
   DbExperienceItem,
   DbEducationItem,
-  DbContactMeta,
   DbContactMethod,
   SiteContent,
 } from './types'

@@ -1,383 +1,150 @@
 "use client";
 
 import { useState } from "react";
-import { useContent } from "./ThemeProvider";
 import type { WorkKind } from "@/lib/types";
+import { useContent } from "./SiteContentProvider";
+import { Container, PillButton, Section, SectionHeading, Surface } from "./primitives";
 
 export function Work() {
-  const c = useContent();
-  const all = c.work;
-
+  const { work } = useContent();
   const [filter, setFilter] = useState<"all" | WorkKind>("all");
-  const filtered =
-    filter === "all" ? all : all.filter((w) => w.kind === filter);
+
+  const filtered = filter === "all" ? work : work.filter((item) => item.kind === filter);
 
   return (
-    <section
-      id="work"
-      style={{ padding: "80px 48px", maxWidth: 1280, margin: "0 auto" }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          marginBottom: 36,
-          flexWrap: "wrap",
-          gap: 20,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 11,
-              color: "var(--color-accent)",
-              letterSpacing: 1.5,
-              // textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            Selected Work
-          </div>
-          <h2
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 300,
-              fontSize: "clamp(36px, 4.5vw, 56px)",
-              letterSpacing: -1.5,
-              margin: 0,
-            }}
-          >
-            Things I&apos;ve{" "}
-            <em
-              style={{
-                color: "var(--color-accent)",
-                fontWeight: 500,
-                fontStyle: "normal",
-              }}
-            >
-              shipped
-            </em>
-            , written, or researched.
-          </h2>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            gap: 4,
-            fontFamily: "var(--font-mono)",
-            fontSize: 11,
-            letterSpacing: 1,
-            textTransform: "uppercase",
-          }}
-        >
+    <Section id="work">
+      <Container className="space-y-10">
+        <SectionHeading
+          eyebrow="Selected Work"
+          title={
+            <>
+              Things I&apos;ve <em className="font-medium not-italic text-[var(--color-accent)]">shipped</em>, written, or researched.
+            </>
+          }
+        />
+
+        <div className="flex flex-wrap gap-2">
           {(
             [
               ["all", "All"],
               ["research", "Research"],
               ["engineering", "Engineering"],
             ] as const
-          ).map(([k, l]) => (
-            <button
-              key={k}
-              onClick={() => setFilter(k)}
-              style={{
-                padding: "8px 14px",
-                background: filter === k ? "var(--color-ink)" : "transparent",
-                color: filter === k ? "var(--color-bg)" : "var(--color-muted)",
-                border: `1px solid ${filter === k ? "var(--color-ink)" : "var(--color-rule)"}`,
-                borderRadius: 2,
-                cursor: "pointer",
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                transition: "all 0.2s",
-              }}
-            >
-              {l}
-            </button>
+          ).map(([key, label]) => (
+            <PillButton key={key} active={filter === key} onClick={() => setFilter(key)}>
+              {label}
+            </PillButton>
           ))}
         </div>
-      </div>
 
-      <div style={{ borderTop: "1px solid var(--color-rule)" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "90px 1fr 1fr 100px 100px",
-            padding: "14px 0",
-            fontFamily: "var(--font-mono)",
-            fontSize: 10,
-            color: "var(--color-muted)",
-            letterSpacing: 1.2,
-            textTransform: "uppercase",
-            borderBottom: "1px solid var(--color-rule-soft)",
-          }}
-        >
-          <span>№</span>
-          <span>Title</span>
-          <span>Venue / Role</span>
-          <span>Kind</span>
-          <span style={{ textAlign: "right" }}>Year</span>
-        </div>
-
-        {filtered.length === 0 && (
-          <div
-            style={{
-              padding: "40px 0",
-              color: "var(--color-muted)",
-              fontFamily: "var(--font-mono)",
-              fontSize: 13,
-            }}
-          >
-            No entries for this filter.
+        <Surface className="overflow-hidden">
+          <div className="hidden grid-cols-[5rem_minmax(0,1.4fr)_minmax(0,1fr)_6rem_5rem] gap-4 border-b border-[var(--color-rule-soft)] px-6 py-4 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)] lg:grid">
+            <span>№</span>
+            <span>Title</span>
+            <span>Venue / Role</span>
+            <span>Kind</span>
+            <span className="text-right">Year</span>
           </div>
-        )}
 
-        {filtered.map((row, i) => {
-          const hasLink = row.link?.trim();
-          return (
-            <a
-              key={row.id || i}
-              href={hasLink || "#"}
-              onClick={hasLink ? undefined : (e) => e.preventDefault()}
-              target={hasLink ? "_blank" : undefined}
-              rel={hasLink ? "noreferrer" : undefined}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "90px 1fr 1fr 100px 100px",
-                padding: "24px 0",
-                borderBottom: "1px solid var(--color-rule)",
-                fontSize: 16,
-                alignItems: "baseline",
-                textDecoration: "none",
-                color: "var(--color-ink)",
-                transition: "background 0.25s, padding 0.25s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "var(--color-bg-alt)";
-                e.currentTarget.style.paddingLeft = "12px";
-                e.currentTarget.style.paddingRight = "12px";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.paddingLeft = "0";
-                e.currentTarget.style.paddingRight = "0";
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 12,
-                  color: "var(--color-muted)",
-                }}
+          {filtered.length === 0 ? (
+            <div className="px-6 py-12 font-mono text-sm text-[var(--color-muted)]">
+              No entries for this filter.
+            </div>
+          ) : null}
+
+          {filtered.map((item, index) => {
+            const hasLink = Boolean(item.link?.trim());
+
+            return (
+              <a
+                key={item.id || index}
+                href={hasLink ? item.link : "#"}
+                onClick={hasLink ? undefined : (event) => event.preventDefault()}
+                target={hasLink ? "_blank" : undefined}
+                rel={hasLink ? "noreferrer" : undefined}
+                className="group grid gap-4 border-b border-[var(--color-rule)] px-6 py-6 transition hover:bg-[var(--color-bg-alt)] sm:px-8 lg:grid-cols-[5rem_minmax(0,1.4fr)_minmax(0,1fr)_6rem_5rem] lg:items-start"
               >
-                {row.displayId}
-              </span>
-              <span
-                style={{
-                  fontWeight: 500,
-                  paddingRight: 24,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                }}
-              >
-                {row.thumbnail && (
-                  <img
-                    src={row.thumbnail}
-                    alt=""
-                    style={{
-                      width: 36,
-                      height: 36,
-                      objectFit: "cover",
-                      borderRadius: 2,
-                      border: "1px solid var(--color-rule)",
-                      flexShrink: 0,
-                    }}
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display =
-                        "none";
-                    }}
-                  />
-                )}
-                <span>{row.title}</span>
-              </span>
-              <span
-                style={{
-                  color: "var(--color-muted)",
-                  fontSize: 14,
-                  paddingRight: 24,
-                }}
-              >
-                {row.venue}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 10,
-                  color: "var(--color-muted)",
-                  letterSpacing: 1,
-                  textTransform: "uppercase",
-                }}
-              >
-                · {row.kind}
-              </span>
-              <span
-                style={{
-                  textAlign: "right",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 12,
-                  color: "var(--color-muted)",
-                }}
-              >
-                {row.year} →
-              </span>
-            </a>
-          );
-        })}
-      </div>
-    </section>
+                <span className="font-mono text-xs text-[var(--color-muted)]">
+                  {item.displayId}
+                </span>
+
+                <span className="flex items-start gap-4 pr-0 lg:pr-6">
+                  {item.thumbnail ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.thumbnail}
+                      alt=""
+                      className="mt-0.5 h-11 w-11 rounded-md border border-[var(--color-rule)] object-cover"
+                    />
+                  ) : null}
+                  <span className="text-lg font-medium text-[var(--color-ink)] transition group-hover:translate-x-1">
+                    {item.title}
+                  </span>
+                </span>
+
+                <span className="pr-0 text-sm leading-6 text-[var(--color-muted)] lg:pr-6">
+                  {item.venue}
+                </span>
+
+                <span className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-[var(--color-muted)]">
+                  {item.kind}
+                </span>
+
+                <span className="font-mono text-xs text-[var(--color-muted)] lg:text-right">
+                  {item.year} →
+                </span>
+              </a>
+            );
+          })}
+        </Surface>
+      </Container>
+    </Section>
   );
 }
 
 export function Experience() {
-  const c = useContent();
-  const exp = c.experience;
+  const { experience } = useContent();
 
   return (
-    <section
-      id="research"
-      style={{ padding: "80px 48px", maxWidth: 1280, margin: "0 auto" }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          marginBottom: 48,
-          flexWrap: "wrap",
-          gap: 20,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 11,
-              color: "var(--color-accent)",
-              letterSpacing: 1.5,
-              // textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            Experience &amp; Research
-          </div>
-          <h2
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 300,
-              fontSize: "clamp(36px, 4.5vw, 56px)",
-              letterSpacing: -1.5,
-              margin: 0,
-            }}
-          >
-            Where I&apos;ve been
-            <br />
-            <em
-              style={{
-                color: "var(--color-accent)",
-                fontWeight: 500,
-                fontStyle: "normal",
-              }}
-            >
-              working
-            </em>{" "}
-            &amp;{" "}
-            <em
-              style={{
-                color: "var(--color-accent)",
-                fontWeight: 500,
-                fontStyle: "normal",
-              }}
-            >
-              thinking
-            </em>
-            .
-          </h2>
-        </div>
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 11,
-            color: "var(--color-muted)",
-            letterSpacing: 1,
-            // textTransform: "uppercase",
-          }}
-        >
-          {exp.length} entries
-        </div>
-      </div>
+    <Section id="research">
+      <Container className="space-y-10">
+        <SectionHeading
+          eyebrow="Experience & Research"
+          meta={`${experience.length} entries`}
+          title={
+            <>
+              Where I&apos;ve been <br className="hidden sm:block" />
+              <em className="font-medium not-italic text-[var(--color-accent)]">working</em> &amp;{" "}
+              <em className="font-medium not-italic text-[var(--color-accent)]">thinking</em>.
+            </>
+          }
+        />
 
-      {exp.map((row, i) => (
-        <div
-          key={row.id || i}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "180px 1fr",
-            padding: "32px 0",
-            borderTop: "1px solid var(--color-rule)",
-            gap: 32,
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 12,
-              color: "var(--color-muted)",
-              paddingTop: 6,
-              letterSpacing: 0.5,
-            }}
-          >
-            {row.period}
-          </div>
-          <div>
-            <div
-              style={{
-                fontSize: 22,
-                fontWeight: 500,
-                marginBottom: 6,
-                color: "var(--color-ink)",
-              }}
+        <div className="space-y-4">
+          {experience.map((item, index) => (
+            <Surface
+              key={item.id || index}
+              className="grid gap-5 p-6 sm:p-8 lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-8"
             >
-              {row.role}
-            </div>
-            <div
-              style={{
-                fontSize: 14,
-                color: "var(--color-accent)",
-                marginBottom: 12,
-                fontFamily: "var(--font-mono)",
-                letterSpacing: 0.3,
-              }}
-            >
-              {row.org}
-            </div>
-            <div
-              style={{
-                fontSize: 15,
-                color: "var(--color-muted)",
-                lineHeight: 1.6,
-                maxWidth: 760,
-              }}
-            >
-              {row.description}
-            </div>
-          </div>
+              <div className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">
+                {item.period}
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-medium text-[var(--color-ink)]">
+                  {item.role}
+                </h3>
+                <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-accent)]">
+                  {item.org}
+                </p>
+                <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-muted)] sm:text-base">
+                  {item.description}
+                </p>
+              </div>
+            </Surface>
+          ))}
         </div>
-      ))}
-    </section>
+      </Container>
+    </Section>
   );
 }

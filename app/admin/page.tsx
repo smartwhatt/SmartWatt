@@ -18,8 +18,7 @@ export default async function AdminPage() {
   } = await supabase.auth.getUser();
 
   return (
-    // Admin theme tokens — start dark, AdminApp toggles data-admin-theme
-    <div data-admin-theme="dark" style={{ minHeight: "100vh" }}>
+    <div className="min-h-screen">
       <AdminShell
         initial={content}
         loggedIn={!!user}

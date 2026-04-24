@@ -1,65 +1,32 @@
 @import "tailwindcss";
 
-/* ── Ubuntu Blueprint theme ────────────────────────────────────
-   Tokens are set on [data-theme="light"|"dark"].
-   JS toggles the attribute; Tailwind reads the vars.
-   ─────────────────────────────────────────────────────────── */
+:root {
+  --color-bg: #0b1014;
+  --color-bg-alt: #111820;
+  --color-bg-glow: #173247;
+  --color-ink: #edf2eb;
+  --color-muted: #8d99a8;
+  --color-accent: #7fc4ff;
+  --color-accent-strong: #dff4ff;
+  --color-accent2: #8ca19b;
+  --color-surface: rgba(17, 24, 32, 0.72);
+  --color-card: #151c24;
+  --color-rule: rgba(237, 242, 235, 0.12);
+  --color-rule-soft: rgba(237, 242, 235, 0.06);
+  --color-accent-dim: rgba(127, 196, 255, 0.14);
 
-[data-theme="light"] {
-  --color-bg:          #f4f1ec;
-  --color-bg-alt:      #ebe6dc;
-  --color-ink:         #0f1417;
-  --color-muted:       #5e6873;
-  --color-accent:      #2a6ed6;
-  --color-accent2:     #8a7a6a;
-  --color-accent-dim:  rgba(42, 110, 214, 0.12);
-  --color-card:        #fbf9f4;
-  --color-rule:        rgba(15, 20, 23, 0.13);
-  --color-rule-soft:   rgba(15, 20, 23, 0.07);
-}
-
-[data-theme="dark"] {
-  --color-bg:          #0d1115;
-  --color-bg-alt:      #13181d;
-  --color-ink:         #f4f1ec;
-  --color-muted:       #7a8390;
-  --color-accent:      #6ba1ee;
-  --color-accent2:     #a89685;
-  --color-accent-dim:  rgba(107, 161, 238, 0.15);
-  --color-card:        #161b22;
-  --color-rule:        rgba(244, 241, 236, 0.1);
-  --color-rule-soft:   rgba(244, 241, 236, 0.05);
-}
-
-/* Admin panel uses separate admin-light/dark tokens */
-[data-admin-theme="light"] {
-  --adm-bg:          #f5f2ed;
-  --adm-bg-alt:      #ece7dc;
-  --adm-card:        #ffffff;
-  --adm-ink:         #14181c;
-  --adm-muted:       #5e6873;
-  --adm-muted-soft:  #8a929c;
-  --adm-rule:        rgba(15, 20, 23, 0.12);
-  --adm-rule-soft:   rgba(15, 20, 23, 0.06);
-  --adm-accent:      #2a6ed6;
-  --adm-accent-dim:  rgba(42, 110, 214, 0.1);
-  --adm-success:     #2e8f5c;
-  --adm-warn:        #c47b2a;
-}
-
-[data-admin-theme="dark"] {
-  --adm-bg:          #0f1317;
-  --adm-bg-alt:      #161b20;
-  --adm-card:        #191f26;
-  --adm-ink:         #f1ede6;
-  --adm-muted:       #8892a0;
-  --adm-muted-soft:  #606a78;
-  --adm-rule:        rgba(244, 241, 236, 0.1);
-  --adm-rule-soft:   rgba(244, 241, 236, 0.05);
-  --adm-accent:      #6ba1ee;
-  --adm-accent-dim:  rgba(107, 161, 238, 0.12);
-  --adm-success:     #5cc28a;
-  --adm-warn:        #d49756;
+  --adm-bg: #0f1317;
+  --adm-bg-alt: #161b20;
+  --adm-card: #191f26;
+  --adm-ink: #f1ede6;
+  --adm-muted: #8892a0;
+  --adm-muted-soft: #606a78;
+  --adm-rule: rgba(244, 241, 236, 0.1);
+  --adm-rule-soft: rgba(244, 241, 236, 0.05);
+  --adm-accent: #6ba1ee;
+  --adm-accent-dim: rgba(107, 161, 238, 0.12);
+  --adm-success: #5cc28a;
+  --adm-warn: #d49756;
 }
 
 @theme inline {
@@ -69,7 +36,9 @@
   --color-ink:        var(--color-ink);
   --color-muted:      var(--color-muted);
   --color-accent:     var(--color-accent);
+  --color-accent-strong: var(--color-accent-strong);
   --color-accent2:    var(--color-accent2);
+  --color-surface:    var(--color-surface);
   --color-card:       var(--color-card);
 
   /* Fonts — var(--font-ubuntu) / var(--font-ubuntu-mono) are injected by next/font */
@@ -81,8 +50,7 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
+  min-height: 100%;
   scroll-behavior: smooth;
 }
 
@@ -92,19 +60,25 @@ body {
   box-sizing: border-box;
 }
 
+html {
+  background:
+    radial-gradient(circle at top left, rgba(127, 196, 255, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(140, 161, 155, 0.16), transparent 26%),
+    linear-gradient(180deg, #0b1014 0%, #0d1318 38%, #0a0f13 100%);
+}
+
 ::selection {
   background: #2a6ed6;
   color: #fff;
 }
 
 body {
-  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--color-bg);
+  margin: 0;
+  font-family: var(--font-sans);
+  background: transparent;
   color: var(--color-ink);
-  transition: background 0.4s, color 0.4s;
 }
 
-/* Fade-in animation for sections */
 @keyframes fadein {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -112,4 +86,8 @@ body {
 
 .animate-fadein {
   animation: fadein 0.5s ease forwards;
+}
+
+a {
+  color: inherit;
 }
