@@ -212,7 +212,7 @@ export function ContactSection({ content, update }: { content: SiteContent; upda
         <Textarea rows={2} value={content.contact.intro} onChange={(e) => update((c) => ({ ...c, contact: { ...c.contact, intro: e.target.value } }))} />
       </Field>
       <Divider />
-      <div className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--adm-muted)]">Methods</div>
+      <div className="font-mono text-[0.62rem] uppercase tracking-widest text-[var(--adm-muted)]">Methods</div>
       {methods.map((row, i) => (
         <ItemRow
           key={row.id || i}

@@ -45,7 +45,7 @@ export function BasicsSection({ content, update }: { content: SiteContent; updat
       <Divider />
 
       <div>
-        <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--adm-muted)]">
+        <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-widest text-[var(--adm-muted)]">
           Headline
         </div>
         <div className="mb-4 text-sm leading-6 text-[var(--adm-muted)]">

@@ -85,7 +85,7 @@ export default function AdminApp({
     <div className="min-h-screen bg-[var(--adm-bg)] text-[var(--adm-ink)]">
       <div className="sticky top-0 z-20 border-b border-[var(--adm-rule)] bg-[color-mix(in_srgb,var(--adm-bg)_93%,transparent)] backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-4 px-6 py-4">
-          <div className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--adm-accent)]">
+          <div className="font-mono text-[0.68rem] uppercase tracking-widest text-[var(--adm-accent)]">
             ● editing
           </div>
           <div className="min-w-0 flex-1">
@@ -93,12 +93,12 @@ export default function AdminApp({
               <span className="font-medium">{content.meta.name || "Your profile"}</span>
               <span className="text-[var(--adm-muted)]">{dirty ? "unpublished changes" : "up to date"}</span>
               {savedAt ? (
-                <span className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-[var(--adm-muted-soft)]">
+                <span className="font-mono text-[0.68rem] uppercase tracking-wider text-[var(--adm-muted-soft)]">
                   draft saved
                 </span>
               ) : null}
             </div>
-            <div className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[var(--adm-muted-soft)]">
+            <div className="mt-1 font-mono text-[0.62rem] uppercase tracking-wider text-[var(--adm-muted-soft)]">
               {userEmail}
             </div>
           </div>
@@ -118,10 +118,10 @@ export default function AdminApp({
 
       <div className="mx-auto max-w-5xl px-6 py-8 pb-20">
         <div className="mb-8 border-b border-[var(--adm-rule)] pb-6">
-          <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--adm-muted)]">
+          <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-widest text-[var(--adm-muted)]">
             Your profile · edit like a resume, publish when ready
           </div>
-          <h1 className="text-4xl font-light tracking-[-0.05em] text-[var(--adm-ink)]">
+          <h1 className="text-4xl font-light tracking-tighter text-[var(--adm-ink)]">
             Hello, <span className="font-medium">{content.meta.name.split(" ")[0] || "there"}</span>.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--adm-muted)]">
@@ -131,7 +131,7 @@ export default function AdminApp({
 
           {dirty ? (
             <div className="mt-5 flex flex-wrap items-center gap-3 rounded-xl border border-[color-mix(in_srgb,var(--adm-accent)_30%,transparent)] bg-[var(--adm-accent-dim)] px-4 py-3 text-sm text-[var(--adm-ink)]">
-              <span className="font-mono text-[0.62rem] uppercase tracking-[0.22em] text-[var(--adm-accent)]">
+              <span className="font-mono text-[0.62rem] uppercase tracking-widest text-[var(--adm-accent)]">
                 ● unpublished
               </span>
               <span className="flex-1">You have edits that aren&apos;t in the database yet.</span>

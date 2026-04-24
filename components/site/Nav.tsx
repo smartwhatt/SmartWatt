@@ -25,7 +25,7 @@ export default function Nav() {
           : "border-transparent bg-transparent",
       ].join(" ")}
     >
-      <Container className="flex min-h-18 items-center justify-between gap-6 py-4 font-mono text-[0.68rem] tracking-[0.24em] text-[var(--color-muted)]">
+      <Container className="flex min-h-18 items-center justify-between gap-6 py-4 font-mono text-[0.68rem] tracking-widest text-[var(--color-muted)]">
         <a href="#top" className="shrink-0 text-[var(--color-ink)]">
           {meta.shortName}
         </a>

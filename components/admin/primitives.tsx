@@ -22,7 +22,7 @@ export function Field({
 }) {
   return (
     <label className={cx('block', className)}>
-      <div className="mb-2 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-[var(--adm-muted)]">
+      <div className="mb-2 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-widest text-[var(--adm-muted)]">
         <span>{label}</span>
         {required ? <span className="text-[var(--adm-accent)]">*</span> : null}
         {hint ? (
@@ -129,7 +129,7 @@ export function Btn({
       title={title}
       disabled={disabled}
       className={cx(
-        'rounded-md border px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] transition',
+        'rounded-md border px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-widest transition',
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         variants[variant],
         className,
@@ -167,7 +167,7 @@ export function SectionCard({
       >
         <span
           className={cx(
-            'inline-block font-mono text-[0.62rem] uppercase tracking-[0.2em] text-[var(--adm-muted)] transition',
+            'inline-block font-mono text-[0.62rem] uppercase tracking-widest text-[var(--adm-muted)] transition',
             open ? 'rotate-90' : '',
           )}
         >
@@ -180,7 +180,7 @@ export function SectionCard({
           ) : null}
         </div>
         {count !== undefined ? (
-          <span className="rounded-full bg-[var(--adm-bg-alt)] px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--adm-muted)]">
+          <span className="rounded-full bg-[var(--adm-bg-alt)] px-3 py-1 font-mono text-[0.68rem] uppercase tracking-wider text-[var(--adm-muted)]">
             {count} {count === 1 ? 'entry' : 'entries'}
           </span>
         ) : null}
@@ -217,7 +217,7 @@ export function ItemRow({
     <div className="overflow-hidden rounded-lg border border-[var(--adm-rule)] bg-[var(--adm-bg)]">
       <div className="flex items-center gap-3 px-4 py-3 transition hover:bg-[var(--adm-bg-alt)]">
         <button type="button" onClick={() => setExpanded((value) => !value)} className="flex min-w-0 flex-1 items-center gap-3 text-left">
-          <span className="min-w-6 text-center font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--adm-muted)]">
+          <span className="min-w-6 text-center font-mono text-[0.68rem] uppercase tracking-wider text-[var(--adm-muted)]">
             {String(index + 1).padStart(2, '0')}
           </span>
           <div className="min-w-0 flex-1">
@@ -246,7 +246,7 @@ export function ItemRow({
         </div>
         <span
           className={cx(
-            'inline-block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[var(--adm-muted)] transition',
+            'inline-block font-mono text-[0.62rem] uppercase tracking-wider text-[var(--adm-muted)] transition',
             expanded ? 'rotate-90' : '',
           )}
         >
@@ -310,7 +310,7 @@ export function ThumbnailInput({ value, onChange }: { value: string; onChange: (
         />
         <div className="mt-2">
           <label htmlFor={fileId} className="inline-block cursor-pointer">
-            <span className="inline-flex rounded-md border border-transparent bg-transparent px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[var(--adm-muted)] transition hover:text-[var(--adm-ink)]">
+            <span className="inline-flex rounded-md border border-transparent bg-transparent px-3.5 py-2 font-mono text-[0.68rem] uppercase tracking-widest text-[var(--adm-muted)] transition hover:text-[var(--adm-ink)]">
               Upload
             </span>
           </label>
