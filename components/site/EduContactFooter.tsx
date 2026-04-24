@@ -35,7 +35,7 @@ export function Education() {
                       : "border-[var(--color-muted)] bg-[var(--color-bg)]",
                   ].join(" ")}
                 />
-                <div className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">
+                <div className="font-mono text-xs tracking-[0.16em] text-[var(--color-muted)]">
                   {item.year}
                 </div>
                 <Surface className="p-5 sm:p-6">
@@ -113,7 +113,7 @@ export function Contact() {
                   key={method.id || index}
                   className="grid gap-2 border-b border-[var(--color-rule)] py-5 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-4"
                 >
-                  <div className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                  <div className="font-mono text-[0.68rem] tracking-[0.22em] text-[var(--color-muted)]">
                     {method.label}
                   </div>
 
@@ -174,7 +174,7 @@ export function Contact() {
 
               <button
                 type="submit"
-                className="inline-flex items-center rounded-full border border-[var(--color-ink)] bg-[var(--color-ink)] px-5 py-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--color-bg)] transition hover:-translate-y-0.5"
+                className="inline-flex items-center rounded-full border border-[var(--color-ink)] bg-[var(--color-ink)] px-5 py-3 font-mono text-[0.68rem] tracking-[0.24em] text-[var(--color-bg)] transition hover:-translate-y-0.5"
               >
                 Send message →
               </button>
@@ -191,7 +191,7 @@ export function Footer() {
 
   return (
     <footer className="mt-12 border-t border-[var(--color-rule)] py-8 sm:mt-16 sm:py-10">
-      <Container className="flex flex-col gap-3 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
+      <Container className="flex flex-col gap-3 font-mono text-[0.68rem] tracking-[0.22em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
         <span>
           © {meta.copyrightYear || new Date().getFullYear()} {meta.name}
         </span>

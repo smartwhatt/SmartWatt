@@ -1,19 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #0b1014;
-  --color-bg-alt: #111820;
-  --color-bg-glow: #173247;
-  --color-ink: #edf2eb;
-  --color-muted: #8d99a8;
-  --color-accent: #7fc4ff;
-  --color-accent-strong: #dff4ff;
-  --color-accent2: #8ca19b;
-  --color-surface: rgba(17, 24, 32, 0.72);
-  --color-card: #151c24;
-  --color-rule: rgba(237, 242, 235, 0.12);
-  --color-rule-soft: rgba(237, 242, 235, 0.06);
-  --color-accent-dim: rgba(127, 196, 255, 0.14);
+  --color-bg: #0d1115;
+  --color-bg-alt: #13181d;
+  --color-ink: #f4f1ec;
+  --color-muted: #7a8390;
+  --color-accent: #6ba1ee;
+  --color-accent-strong: #f4f1ec;
+  --color-accent2: #a89685;
+  --color-surface: rgba(22, 27, 34, 0.92);
+  --color-card: #161b22;
+  --color-rule: rgba(244, 241, 236, 0.1);
+  --color-rule-soft: rgba(244, 241, 236, 0.05);
+  --color-accent-dim: rgba(107, 161, 238, 0.15);
 
   --adm-bg: #0f1317;
   --adm-bg-alt: #161b20;
@@ -61,10 +60,7 @@ body {
 }
 
 html {
-  background:
-    radial-gradient(circle at top left, rgba(127, 196, 255, 0.16), transparent 30%),
-    radial-gradient(circle at top right, rgba(140, 161, 155, 0.16), transparent 26%),
-    linear-gradient(180deg, #0b1014 0%, #0d1318 38%, #0a0f13 100%);
+  background: var(--color-bg);
 }
 
 ::selection {
@@ -75,7 +71,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: transparent;
+  background: var(--color-bg);
   color: var(--color-ink);
 }
 

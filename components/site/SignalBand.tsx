@@ -52,7 +52,7 @@ export default function SignalBand() {
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
         >
-          <div className="mb-4 flex flex-col gap-2 font-mono text-[0.62rem] uppercase tracking-[0.26em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
+          <div className="mb-4 flex flex-col gap-2 font-mono text-[0.62rem] tracking-[0.26em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
             <span>signal / live / {SAMPLE_COUNT} samples</span>
             <span className="text-[var(--color-accent)]">
               ● tracking / frame {frame.toString().padStart(4, "0")}
@@ -80,7 +80,7 @@ export default function SignalBand() {
             })}
           </div>
 
-          <div className="mt-3 flex flex-col gap-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-3 flex flex-col gap-2 font-mono text-[0.62rem] tracking-[0.22em] text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
             <span>t = 0</span>
             <span className="text-[var(--color-accent-strong)]">{caption}</span>
             <span>t = now</span>

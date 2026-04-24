@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <Section id="index" className="pt-32 sm:pt-40 lg:pt-44">
       <Container>
-        <div className="mb-8 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.28em] text-[var(--color-accent)] sm:mb-10">
+        <div className="mb-8 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-[0.28em] text-[var(--color-accent)] sm:mb-10">
           <span>{meta.name}</span>
           {meta.location ? (
             <span className="text-[var(--color-muted)]">/ {meta.location}</span>
@@ -65,7 +65,7 @@ export default function Hero() {
 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-14">
           <div>
-            <h1 className="max-w-5xl text-[clamp(3.2rem,9vw,7rem)] font-light leading-[0.94] tracking-[-0.09em] text-[var(--color-ink)]">
+            <h1 className="max-w-5xl text-[clamp(2.1rem,5.4vw,4.4rem)] font-light leading-[1] tracking-[-0.055em] text-[var(--color-ink)]">
               {parseHeadline(hero.headlineLine1)}
               <br />
               {parseHeadline(hero.headlineLine2)}
@@ -90,7 +90,7 @@ export default function Hero() {
             <div className="space-y-7 border-l border-[var(--color-rule)] pl-5 sm:pl-6">
               {hero.currently ? (
                 <div>
-                  <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
                     Currently
                   </div>
                   <div className="text-sm leading-7 text-[var(--color-ink)]">
@@ -101,7 +101,7 @@ export default function Hero() {
 
               {hero.openTo ? (
                 <div>
-                  <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
                     Open to
                   </div>
                   <div className="text-sm leading-7 text-[var(--color-ink)]">
@@ -112,7 +112,7 @@ export default function Hero() {
 
               {hero.stack ? (
                 <div>
-                  <div className="mb-3 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
                     Stack
                   </div>
                   <div className="font-mono text-xs leading-7 text-[var(--color-muted)]">

@@ -38,7 +38,7 @@ export function Work() {
         </div>
 
         <Surface className="overflow-hidden">
-          <div className="hidden grid-cols-[5rem_minmax(0,1.4fr)_minmax(0,1fr)_6rem_5rem] gap-4 border-b border-[var(--color-rule-soft)] px-6 py-4 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)] lg:grid">
+          <div className="hidden grid-cols-[5rem_minmax(0,1.4fr)_minmax(0,1fr)_6rem_5rem] gap-4 border-b border-[var(--color-rule-soft)] px-6 py-4 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)] lg:grid">
             <span>№</span>
             <span>Title</span>
             <span>Venue / Role</span>
@@ -86,7 +86,7 @@ export function Work() {
                   {item.venue}
                 </span>
 
-                <span className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-[var(--color-muted)]">
+                <span className="font-mono text-[0.62rem] tracking-[0.2em] text-[var(--color-muted)]">
                   {item.kind}
                 </span>
 
@@ -126,7 +126,7 @@ export function Experience() {
               key={item.id || index}
               className="grid gap-5 p-6 sm:p-8 lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-8"
             >
-              <div className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">
+              <div className="font-mono text-xs tracking-[0.16em] text-[var(--color-muted)]">
                 {item.period}
               </div>
 
@@ -134,7 +134,7 @@ export function Experience() {
                 <h3 className="text-2xl font-medium text-[var(--color-ink)]">
                   {item.role}
                 </h3>
-                <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-accent)]">
+                <p className="mt-2 font-mono text-xs tracking-[0.18em] text-[var(--color-accent)]">
                   {item.org}
                 </p>
                 <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-muted)] sm:text-base">

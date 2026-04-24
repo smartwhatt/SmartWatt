@@ -35,7 +35,7 @@ export function Eyebrow({
   return (
     <p
       className={cx(
-        "font-mono text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-accent)]",
+        "font-mono text-[0.68rem] tracking-[0.32em] text-[var(--color-accent)]",
         className,
       )}
     >
@@ -62,7 +62,7 @@ export function SectionHeading({
         </h2>
       </div>
       {meta ? (
-        <div className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+        <div className="font-mono text-[0.72rem] tracking-[0.22em] text-[var(--color-muted)]">
           {meta}
         </div>
       ) : null}
@@ -80,7 +80,7 @@ export function PillButton({
   return (
     <button
       className={cx(
-        "rounded-full border px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.22em] transition",
+        "rounded-full border px-4 py-2 font-mono text-[0.68rem] tracking-[0.22em] transition",
         active
           ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-bg)]"
           : "border-[var(--color-rule)] text-[var(--color-muted)] hover:border-[var(--color-ink)] hover:text-[var(--color-ink)]",
@@ -102,9 +102,9 @@ export function ActionLink({
   return (
     <a
       className={cx(
-        "inline-flex items-center justify-center rounded-full border px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.24em] transition duration-200 hover:-translate-y-0.5",
+        "inline-flex items-center justify-center rounded-full border px-5 py-3 font-mono text-[0.7rem] tracking-[0.24em] transition duration-200 hover:-translate-y-0.5",
         invert
-          ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-bg)]"
+          ? "border-[var(--color-ink)] bg-[var(--color-ink)] !text-[var(--color-bg)]"
           : "border-[var(--color-rule)] text-[var(--color-ink)] hover:border-[var(--color-ink)]",
         className,
       )}
@@ -122,7 +122,7 @@ export function Surface({
   return (
     <div
       className={cx(
-        "rounded-[2rem] border border-[var(--color-rule)] bg-[var(--color-surface)]",
+        "h-fit self-start rounded-[2rem] border border-[var(--color-rule)] bg-[var(--color-surface)]",
         className,
       )}
       {...props}
@@ -138,7 +138,7 @@ export function FormLabel({
   error?: string;
 }) {
   return (
-    <label className="mb-2 flex items-center justify-between font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[var(--color-muted)]">
+    <label className="mb-2 flex items-center justify-between font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
       <span>{label}</span>
       {error ? <span className="normal-case tracking-normal text-[#ff8f8f]">{error}</span> : null}
     </label>
