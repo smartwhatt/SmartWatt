@@ -12,10 +12,7 @@ function parseHeadline(str: string) {
   return parts.map((part, index) => {
     if (/^\[.+\]$/.test(part)) {
       return (
-        <em
-          key={index}
-          className="font-medium not-italic text-[var(--color-accent)]"
-        >
+        <em key={index} className="font-medium not-italic text-accent">
           {part.slice(1, -1)}
         </em>
       );
@@ -56,16 +53,16 @@ export default function Hero() {
   return (
     <Section id="index" className="pt-32 sm:pt-40 lg:pt-44">
       <Container>
-        <div className="mb-8 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-[0.28em] text-[var(--color-accent)] sm:mb-10">
+        <div className="mb-8 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] tracking-[0.28em] text-accent sm:mb-10">
           <span>{meta.name}</span>
           {meta.location ? (
-            <span className="text-[var(--color-muted)]">/ {meta.location}</span>
+            <span className="text-muted">/ {meta.location}</span>
           ) : null}
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-14">
           <div>
-            <h1 className="max-w-5xl text-[clamp(2.1rem,5.4vw,4.4rem)] font-light leading-[1] tracking-[-0.055em] text-[var(--color-ink)]">
+            <h1 className="max-w-5xl text-[clamp(2.1rem,5.4vw,4.4rem)] font-light leading-none tracking-[-0.055em] text-ink">
               {parseHeadline(hero.headlineLine1)}
               <br />
               {parseHeadline(hero.headlineLine2)}
@@ -73,7 +70,7 @@ export default function Hero() {
               {parseHeadline(hero.headlineLine3)}
             </h1>
 
-            <p className="mt-8 max-w-2xl text-base leading-8 text-[var(--color-muted)] sm:text-lg">
+            <p className="mt-8 max-w-2xl text-base leading-8 text-muted sm:text-lg">
               {hero.intro}
             </p>
 
@@ -87,13 +84,13 @@ export default function Hero() {
 
           <Surface className="relative overflow-hidden p-6 sm:p-8">
             <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--color-accent),transparent)] opacity-60" />
-            <div className="space-y-7 border-l border-[var(--color-rule)] pl-5 sm:pl-6">
+            <div className="space-y-7 border-l border-(--color-rule) pl-5 sm:pl-6">
               {hero.currently ? (
                 <div>
-                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
+                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-muted">
                     Currently
                   </div>
-                  <div className="text-sm leading-7 text-[var(--color-ink)]">
+                  <div className="text-sm leading-7 text-ink">
                     <Lines text={hero.currently} />
                   </div>
                 </div>
@@ -101,10 +98,10 @@ export default function Hero() {
 
               {hero.openTo ? (
                 <div>
-                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
+                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-muted">
                     Open to
                   </div>
-                  <div className="text-sm leading-7 text-[var(--color-ink)]">
+                  <div className="text-sm leading-7 text-ink">
                     <Lines text={hero.openTo} />
                   </div>
                 </div>
@@ -112,10 +109,10 @@ export default function Hero() {
 
               {hero.stack ? (
                 <div>
-                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-[var(--color-muted)]">
+                  <div className="mb-3 font-mono text-[0.62rem] tracking-[0.24em] text-muted">
                     Stack
                   </div>
-                  <div className="font-mono text-xs leading-7 text-[var(--color-muted)]">
+                  <div className="font-mono text-xs leading-7 text-muted">
                     <Lines text={hero.stack} />
                   </div>
                 </div>

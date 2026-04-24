@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Ubuntu, Ubuntu_Mono } from "next/font/google";
+import { fetchContent } from "@/lib/content";
 import "./globals.css";
 
 const ubuntu = Ubuntu({
@@ -16,10 +17,50 @@ const ubuntuMono = Ubuntu_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Smart Wattanapornmongkol — Engineer & AI Researcher",
-  description:
-    "Engineering student at Chulalongkorn University. AI researcher at OpenThaiGPT Lab. Interested in data-centric ML, infrastructure, and the boring work that makes systems ship.",
+const BASE_URL = "https://smartwatt.me";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta, hero } = await fetchContent();
+  const title = `${meta.name} — Engineer & AI Researcher`;
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title,
+    description: hero.intro,
+    alternates: { canonical: "/" },
+    openGraph: {
+      type: "profile",
+      url: BASE_URL,
+      title,
+      description: hero.intro,
+      siteName: meta.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: hero.intro,
+    },
+  };
+}
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Smart Wattanapornmongkol",
+  url: BASE_URL,
+  image: `${BASE_URL}/img/profile.png`,
+  jobTitle: "AI Researcher & Engineer",
+  affiliation: [
+    {
+      "@type": "Organization",
+      name: "Chulalongkorn University",
+    },
+    {
+      "@type": "Organization",
+      name: "OpenThaiGPT Lab",
+    },
+  ],
+  sameAs: [],
 };
 
 export default function RootLayout({
@@ -29,9 +70,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${ubuntu.variable} ${ubuntuMono.variable}`}>
-      <body className="bg-[var(--color-bg)] text-[var(--color-ink)] antialiased">
-        {children}
-      </body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
+      <body className="bg-bg text-ink antialiased">{children}</body>
     </html>
   );
 }
