@@ -1,0 +1,10 @@
+.env*
+.next
+node_modules
+docs
+public/preview
+.tmp
+supabase
+.playwright-mcp
+*.tsbuildinfo
+.DS_Store

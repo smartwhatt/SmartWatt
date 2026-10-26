@@ -4,25 +4,33 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "devsafe": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:types": "node scripts/generate-types.mjs",
+    "cv:sync": "NODE_OPTIONS=--no-deprecation tsx scripts/sync-cv.ts"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.10.2",
-    "@supabase/supabase-js": "^2.104.0",
-    "next": "16.2.4",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@payloadcms/db-postgres": "^3.92.0",
+    "@payloadcms/next": "^3.92.0",
+    "@payloadcms/richtext-lexical": "^3.92.0",
+    "@payloadcms/ui": "^3.92.0",
+    "dotenv": "^16.4.7",
+    "graphql": "^16.11.0",
+    "next": "^16.4.3",
+    "payload": "^3.92.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "esbuild": "^0.28.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "tailwindcss": "^4",
+    "eslint-config-next": "^16.4.3",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
