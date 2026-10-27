@@ -828,13 +828,63 @@
 }
 
 
+.nav a,
+.headerMail,
+.heroLinks a,
+.email,
+.links a,
+.footer a {
+  position: relative;
+}
+
+.nav a::after,
+.headerMail::after,
+.heroLinks a::after,
+.email::after,
+.links a::after,
+.footer a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 200ms var(--ease-out);
+  pointer-events: none;
+}
+
+.nav a:focus-visible::after,
+.headerMail:focus-visible::after,
+.heroLinks a:focus-visible::after,
+.email:focus-visible::after,
+.links a:focus-visible::after,
+.footer a:focus-visible::after {
+  transform: scaleX(1);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .portrait:hover img {
-    transform: scale(1.015);
+  .nav a:hover::after,
+  .headerMail:hover::after,
+  .heroLinks a:hover::after,
+  .email:hover::after,
+  .links a:hover::after,
+  .footer a:hover::after {
+    transform: scaleX(1);
   }
 
-  .heroLinks a:hover span {
-    transform: translateX(2px);
+  .heroLinks a:hover .arrowDown {
+    transform: translateY(2px);
+  }
+
+  .heroLinks a:hover .arrowUpRight {
+    transform: translate(2px, -2px);
+  }
+
+  .portrait:hover img {
+    transform: scale(1.015);
   }
 
   a.workRow:hover .workTitle,
@@ -871,8 +921,18 @@
   }
 
   .portrait:hover img,
-  .heroLinks a:hover span {
+  .heroLinks a:hover .arrowDown,
+  .heroLinks a:hover .arrowUpRight {
     transform: none;
+  }
+
+  .nav a::after,
+  .headerMail::after,
+  .heroLinks a::after,
+  .email::after,
+  .links a::after,
+  .footer a::after {
+    transition: none;
   }
 
   .steam {

@@ -147,10 +147,10 @@ export default function Quiet({ data }: { data: SiteData }) {
 
             <div className={s.heroLinks}>
               <a href="#work">
-                Selected work <span aria-hidden>↓</span>
+                Selected work <span className={s.arrowDown} aria-hidden>↓</span>
               </a>
               <a href={profile.cv.full} target="_blank" rel="noreferrer">
-                CV <span aria-hidden>↗</span>
+                CV <span className={s.arrowUpRight} aria-hidden>↗</span>
               </a>
             </div>
           </div>
@@ -292,9 +292,6 @@ export default function Quiet({ data }: { data: SiteData }) {
                   {method.label} <span aria-hidden>↗</span>
                 </a>
               ))}
-            <a href={profile.cv.repo} target="_blank" rel="noreferrer">
-              cv-resume <span aria-hidden>↗</span>
-            </a>
           </div>
 
           {updated ? <p className={s.updated}>Last updated {updated}.</p> : null}
