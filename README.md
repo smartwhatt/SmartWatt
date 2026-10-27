@@ -94,11 +94,14 @@ The homepage is `components/designs/quiet/Quiet.tsx`. Indexing is enabled. The a
 
 The page stays calm. The movement is small and respects `prefers-reduced-motion`:
 
-- The hero rises once on load.
-- Section content fades up when it first enters the viewport.
+- The hero enters in a short stagger: headline lines, intro, now, links, portrait.
+- A section's hairline draws left to right, and its content fades up, on first view.
+- Experience details open and close with a 220ms height transition.
 - A thin tea ring expands from the pointer on press.
 - The cup under the portrait has two loops of steam.
-- A work title draws a moss underline on hover. The hero arrows shift 2px.
+- A work title draws a moss underline on hover. The hero arrows shift 2px. The portrait
+  scales 1.5% on hover.
+- Hover movement only runs on fine pointers. Reduced motion removes movement.
 
 Clients: [QuietMotion.tsx](components/designs/quiet/QuietMotion.tsx) and
 [quiet.module.css](components/designs/quiet/quiet.module.css).

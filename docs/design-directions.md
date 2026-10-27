@@ -46,8 +46,8 @@ the portrait. The cup is the only ornament. Its steam is the only ambient motion
 
 ## Why it fits
 
-- **Calm:** one column, one image, one accent. Motion is small and slow: a hero rise, section
-  reveals, a click ripple, and the cup steam.
+- **Calm:** one column, one image, one accent. Motion is small and slow: a staggered hero
+  entrance, section hairline draws, a click ripple, cup steam, and accordion details.
 - **Humble:** modest type sizes, no metrics band, no giant name, no motion for its own sake.
 - **Elegant:** the serif/italic pairing, the tabular dates, the 1px rules, the drop cap.
 - **Not extreme:** warm stone paper instead of stark white or black; moss instead of a

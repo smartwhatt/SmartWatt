@@ -172,6 +172,7 @@ export default function Quiet({ data }: { data: SiteData }) {
         </section>
 
         <section className={s.section} id="work" data-reveal>
+          <span className={s.sectionRule} aria-hidden />
           <h2>Selected work</h2>
           <div className={s.workList}>
             {work.map((item) => (
@@ -181,6 +182,7 @@ export default function Quiet({ data }: { data: SiteData }) {
         </section>
 
         <section className={s.section} id="experience" data-reveal>
+          <span className={s.sectionRule} aria-hidden />
           <h2>Experience</h2>
           <div className={s.entries}>
             {appointments.map((item) => (
@@ -190,6 +192,7 @@ export default function Quiet({ data }: { data: SiteData }) {
         </section>
 
         <section className={s.section} id="teaching" data-reveal>
+          <span className={s.sectionRule} aria-hidden />
           <h2>Teaching</h2>
           <div className={s.entries}>
             {teaching.map((item) => (
@@ -199,6 +202,7 @@ export default function Quiet({ data }: { data: SiteData }) {
         </section>
 
         <section className={s.section} id="education" data-reveal>
+          <span className={s.sectionRule} aria-hidden />
           <h2>Education</h2>
           <div className={s.entries}>
             {education.map((item) => (
@@ -218,6 +222,7 @@ export default function Quiet({ data }: { data: SiteData }) {
         </section>
 
         <section className={s.section} id="about" data-reveal>
+          <span className={s.sectionRule} aria-hidden />
           <h2>About</h2>
           <div className={s.aboutGrid}>
             <div className={s.prose}>
@@ -271,6 +276,7 @@ export default function Quiet({ data }: { data: SiteData }) {
         </section>
 
         <section className={s.contact} id="contact" data-reveal>
+          <span className={s.sectionRule} aria-hidden />
           <h2>Contact</h2>
           <p className={s.contactIntro}>{profile.contactIntro}</p>
 

@@ -7,7 +7,10 @@
   --rule: #dedbd2;
   --rule-soft: #eceae2;
   --accent: #5c6a55;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
+  interpolate-size: allow-keywords;
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);
@@ -95,10 +98,6 @@
   align-items: start;
 }
 
-.heroCopy {
-  animation: rise 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
 .hero h1 {
   margin: 0;
   font-family: var(--font-source-serif), Georgia, serif;
@@ -112,6 +111,23 @@
 .headlineLine {
   display: block;
   text-wrap: balance;
+  animation: enter 620ms var(--ease-out) both;
+}
+
+.headlineLine:nth-child(1) {
+  animation-delay: 40ms;
+}
+
+.headlineLine:nth-child(2) {
+  animation-delay: 110ms;
+}
+
+.headlineLine:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.headlineLine:nth-child(4) {
+  animation-delay: 250ms;
 }
 
 .hero h1 em {
@@ -125,6 +141,7 @@
   font-size: 16.5px;
   line-height: 1.75;
   color: var(--muted);
+  animation: enter 620ms var(--ease-out) 260ms both;
 }
 
 .now {
@@ -133,6 +150,7 @@
   font-size: 14.5px;
   line-height: 1.7;
   color: var(--ink);
+  animation: enter 620ms var(--ease-out) 330ms both;
 }
 
 .nowLabel {
@@ -154,6 +172,7 @@
   font-family: var(--font-instrument), system-ui, sans-serif;
   font-size: 12.5px;
   letter-spacing: 0.01em;
+  animation: enter 620ms var(--ease-out) 400ms both;
 }
 
 .heroLinks a {
@@ -169,27 +188,20 @@
 
 .heroLinks a span {
   display: inline-block;
-  transition: transform 250ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.heroLinks a:hover span {
-  transform: translateX(2px);
+  transition: transform 160ms var(--ease-out);
 }
 
 .portrait {
   margin: 0;
   align-self: start;
+  animation: enter 700ms var(--ease-out) 160ms both;
 }
 
 .portrait img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.portrait:hover img {
-  transform: scale(1.015);
+  transition: transform 200ms ease;
 }
 
 .portrait figcaption {
@@ -207,8 +219,24 @@
   width: min(1080px, 100%);
   margin: 0 auto;
   padding: 60px 40px 64px;
-  border-top: 1px solid var(--rule);
   scroll-margin-top: 80px;
+}
+
+.sectionRule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--rule);
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 700ms var(--ease-out);
+}
+
+[data-reveal-pending='true'] .sectionRule {
+  transform: scaleX(0);
+  transition: none;
 }
 
 .section h2,
@@ -262,7 +290,7 @@
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0 1px;
-  transition: color 160ms ease, background-size 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: color 160ms ease, background-size 200ms var(--ease-out);
 }
 
 .workNote {
@@ -282,15 +310,6 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-a.workRow:hover .workTitle,
-a.workRow:hover .workYear {
-  color: var(--accent);
-}
-
-a.workRow:hover .workTitle {
-  background-size: 100% 1px;
 }
 
 .entries {
@@ -357,6 +376,20 @@ a.workRow:hover .workTitle {
 
 .details {
   margin-top: 10px;
+}
+
+.details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  content-visibility: hidden;
+  transition:
+    block-size 220ms var(--ease-out),
+    content-visibility 220ms allow-discrete;
+}
+
+.details[open]::details-content {
+  block-size: auto;
+  content-visibility: visible;
 }
 
 .details summary {
@@ -508,7 +541,6 @@ a.workRow:hover .workTitle {
   width: min(1080px, 100%);
   margin: 0 auto;
   padding: 64px 40px 80px;
-  border-top: 1px solid var(--rule);
   scroll-margin-top: 80px;
 }
 
@@ -624,10 +656,6 @@ a.workRow:hover .workTitle {
   animation-delay: 2.4s;
 }
 
-.heroCup:hover .steam {
-  animation-duration: 3.6s;
-}
-
 @keyframes steam {
   0% {
     opacity: 0;
@@ -645,10 +673,10 @@ a.workRow:hover .workTitle {
   }
 }
 
-@keyframes rise {
+@keyframes enter {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -800,7 +828,53 @@ a.workRow:hover .workTitle {
 }
 
 
+@media (hover: hover) and (pointer: fine) {
+  .portrait:hover img {
+    transform: scale(1.015);
+  }
+
+  .heroLinks a:hover span {
+    transform: translateX(2px);
+  }
+
+  a.workRow:hover .workTitle,
+  a.workRow:hover .workYear {
+    color: var(--accent);
+  }
+
+  a.workRow:hover .workTitle {
+    background-size: 100% 1px;
+  }
+
+  .heroCup:hover .steam {
+    animation-duration: 3.6s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .headlineLine,
+  .intro,
+  .now,
+  .heroLinks,
+  .portrait {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .sectionRule {
+    transition: none;
+  }
+
+  .details::details-content {
+    transition: none;
+  }
+
+  .portrait:hover img,
+  .heroLinks a:hover span {
+    transform: none;
+  }
+
   .steam {
     animation: none;
     opacity: 0.3;
